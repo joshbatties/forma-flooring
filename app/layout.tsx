@@ -14,11 +14,33 @@ const gabarito = Gabarito({
 export const metadata = {
   title: "FORMA FLOORING - Premium Timber Flooring Solutions",
   description: "Beautiful hardwood, engineered, and laminate timber flooring. Expert installation and superior quality flooring solutions for your home or business.",
+  icons: {
+    icon: [
+      { url: '/favicons/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicons/favicon-32x32.png', sizes: '32x32', type: 'image/png' }
+    ],
+    apple: {
+      url: '/favicons/apple-touch-icon.png',
+      sizes: '180x180',
+      type: 'image/png'
+    },
+    other: [
+      {
+        rel: 'manifest',
+        url: '/favicons/site.webmanifest'
+      }
+    ]
+  }
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
+      <head>
+        <meta name="theme-color" content="#ffffff" />
+        <link rel="mask-icon" href="/favicons/favicon.ico" color="#000000" />
+        <meta name="msapplication-TileColor" content="#ffffff" />
+      </head>
       <body className={`min-h-screen flex flex-col ${gabarito.variable} font-sans`}>
         <Header />
         <main className="flex-1 w-full">

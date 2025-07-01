@@ -105,8 +105,8 @@ export default function Header() {
             <div className="hidden md:flex relative mr-4" ref={searchRef}>
               <div className="relative w-64">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
-                <input 
-                  type="text" 
+              <input 
+                type="text" 
                   placeholder="Search flooring..." 
                   value={searchQuery}
                   onChange={(e) => handleSearch(e.target.value)}
@@ -211,10 +211,10 @@ export default function Header() {
                       <X className="h-5 w-5" />
                     </button>
                   </div>
-                  <div className="relative">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
-                    <input 
-                      type="text" 
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+            <input 
+              type="text" 
                       placeholder="Search for flooring products..." 
                       value={searchQuery}
                       onChange={(e) => handleSearch(e.target.value)}
