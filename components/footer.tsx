@@ -12,11 +12,11 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Information */}
           <div>
-            <div className="mb-5">
+            <div className="text-lg font-semibold text-gray-700 mb-5 flex items-start">
               <img 
                 src="/forma-flooring-mountain-black.png" 
                 alt="Forma Flooring Logo" 
-                className="h-16 w-auto object-contain" 
+                className="h-7 w-auto object-contain" 
               />
             </div>
             <p className="text-gray-500 mb-4">

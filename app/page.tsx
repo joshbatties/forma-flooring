@@ -28,8 +28,8 @@ function HeroSection() {
       </div>
 
       {/* Hero Video */}
-      <div className="md:flex-1 -mx-4 md:mx-0 bg-white">
-        <div className="relative w-full h-[calc(100vh-16rem)] md:h-[36rem] xl:max-w-[800px] xl:mx-auto md:rounded-lg overflow-hidden">
+      <div className="md:flex-1 -mx-4 md:mx-0 md:-mr-4 bg-white md:flex md:justify-end">
+        <div className="relative w-full h-[calc(100vh-16rem)] md:h-[36rem] xl:max-w-[800px] md:rounded-lg md:rounded-r-none overflow-hidden">
           <video
             src="/hero-video.mp4"
             autoPlay

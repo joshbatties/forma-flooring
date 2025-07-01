@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, Dispatch, SetStateAction } from "react";
+import { useState, Dispatch, SetStateAction, useEffect } from "react";
 import { ChevronDown, X } from "lucide-react";
 import { Icons } from "./icons";
 
@@ -18,6 +18,20 @@ export function MainNav({ isMenuOpen, setMenuOpen }: MainNavProps) {
   const [internalOpen, setInternalOpen] = useState(false);
   const open = isMenuOpen !== undefined ? isMenuOpen : internalOpen;
   const handleSetOpen = setMenuOpen || setInternalOpen;
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    // Cleanup function to restore scroll when component unmounts
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [open]);
 
   return (
     <>
@@ -118,25 +132,30 @@ export function MainNav({ isMenuOpen, setMenuOpen }: MainNavProps) {
       />
       
       <div 
-        className={`md:hidden fixed top-0 right-0 bottom-0 w-80 max-w-[80vw] bg-white border-l border-gray-200 shadow-2xl z-50 transform transition-transform duration-300 ease-in-out ${open ? "translate-x-0" : "translate-x-full"}`}
+        className={`md:hidden fixed top-0 right-0 bottom-0 w-80 max-w-[80vw] bg-white border-l border-gray-200 shadow-2xl z-50 transform transition-transform duration-300 ease-in-out flex flex-col ${open ? "translate-x-0" : "translate-x-full"}`}
         style={{ backgroundColor: 'white' }}
       >
-        <div className="p-4 flex justify-between items-center border-b">
-          <h2 className="font-semibold text-lg">Menu</h2>
+        <div className="p-6 flex justify-between items-center border-b flex-shrink-0">
+          <img 
+            src="/forma-flooring-logo-colors.png" 
+            alt="Forma Flooring Logo" 
+            className="h-16 w-auto object-contain" 
+          />
           <button 
             onClick={() => handleSetOpen(false)}
-            className="p-2 rounded-md hover:bg-gray-100"
+            className="p-3 rounded-lg hover:bg-gray-100"
             aria-label="Close menu"
           >
-            <X className="h-5 w-5" />
+            <X className="h-7 w-7" />
           </button>
         </div>
         
-        <ul className="p-4 space-y-4">
+        <div className="flex-1 overflow-y-auto">
+          <ul className="pl-4 pr-8 pt-6 pb-8 space-y-1">
           <li>
             <Link
               href="/about"
-              className="block py-2 hover:text-amber-600 transition-colors"
+              className="block py-6 px-3 text-5xl font-bold hover:text-amber-600 hover:bg-amber-50 rounded-xl transition-all"
               onClick={() => handleSetOpen(false)}
             >
               About
@@ -144,19 +163,19 @@ export function MainNav({ isMenuOpen, setMenuOpen }: MainNavProps) {
           </li>
           <li>
             <button 
-              className="flex items-center justify-between w-full py-2 hover:text-amber-600 transition-colors"
+              className="flex items-center justify-between w-full py-6 px-3 text-5xl font-bold hover:text-amber-600 hover:bg-amber-50 rounded-xl transition-all"
               onClick={() => setProductsOpen(!productsOpen)}
             >
               Flooring
-              <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${productsOpen ? "rotate-180" : ""}`} />
+              <ChevronDown className={`h-10 w-10 transition-transform duration-200 ${productsOpen ? "rotate-180" : ""}`} />
             </button>
             
             {/* Products submenu for mobile */}
-            <ul className={`pl-4 mt-2 space-y-2 ${productsOpen ? "block" : "hidden"}`}>
+            <ul className={`pl-6 mt-2 space-y-1 ${productsOpen ? "block" : "hidden"}`}>
               <li>
                 <Link
                   href="/products"
-                  className="block py-1.5 text-sm hover:text-amber-600 transition-colors"
+                  className="block py-4 px-3 text-3xl font-semibold hover:text-amber-600 hover:bg-amber-50 rounded-xl transition-all"
                   onClick={() => handleSetOpen(false)}
                 >
                   All Flooring
@@ -165,7 +184,7 @@ export function MainNav({ isMenuOpen, setMenuOpen }: MainNavProps) {
               <li>
                 <Link
                   href="/timber/flooring"
-                  className="block py-1.5 text-sm hover:text-amber-600 transition-colors"
+                  className="block py-4 px-3 text-3xl font-semibold hover:text-amber-600 hover:bg-amber-50 rounded-xl transition-all"
                   onClick={() => handleSetOpen(false)}
                 >
                   Hardwood Flooring
@@ -174,7 +193,7 @@ export function MainNav({ isMenuOpen, setMenuOpen }: MainNavProps) {
               <li>
                 <Link
                   href="/timber/flooring?type=engineered"
-                  className="block py-1.5 text-sm hover:text-amber-600 transition-colors"
+                  className="block py-4 px-3 text-3xl font-semibold hover:text-amber-600 hover:bg-amber-50 rounded-xl transition-all"
                   onClick={() => handleSetOpen(false)}
                 >
                   Engineered Flooring
@@ -183,7 +202,7 @@ export function MainNav({ isMenuOpen, setMenuOpen }: MainNavProps) {
               <li>
                 <Link
                   href="/timber/flooring?type=laminate"
-                  className="block py-1.5 text-sm hover:text-amber-600 transition-colors"
+                  className="block py-4 px-3 text-3xl font-semibold hover:text-amber-600 hover:bg-amber-50 rounded-xl transition-all"
                   onClick={() => handleSetOpen(false)}
                 >
                   Laminate Flooring
@@ -193,8 +212,17 @@ export function MainNav({ isMenuOpen, setMenuOpen }: MainNavProps) {
           </li>
           <li>
             <Link
+              href="/request-sample"
+              className="block py-6 px-3 text-5xl font-bold hover:text-amber-600 hover:bg-amber-50 rounded-xl transition-all"
+              onClick={() => handleSetOpen(false)}
+            >
+              Samples
+            </Link>
+          </li>
+          <li>
+            <Link
               href="/gallery"
-              className="block py-2 hover:text-amber-600 transition-colors"
+              className="block py-6 px-3 text-5xl font-bold hover:text-amber-600 hover:bg-amber-50 rounded-xl transition-all"
               onClick={() => handleSetOpen(false)}
             >
               Gallery
@@ -203,13 +231,14 @@ export function MainNav({ isMenuOpen, setMenuOpen }: MainNavProps) {
           <li>
             <Link
               href="/contact"
-              className="block py-2 hover:text-amber-600 transition-colors"
+              className="block py-6 px-3 text-5xl font-bold hover:text-amber-600 hover:bg-amber-50 rounded-xl transition-all"
               onClick={() => handleSetOpen(false)}
             >
               Contact
             </Link>
           </li>
         </ul>
+        </div>
       </div>
     </>
   );

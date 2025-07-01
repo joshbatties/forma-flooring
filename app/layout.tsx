@@ -2,6 +2,7 @@ import "./globals.css";
 import { ReactNode } from "react";
 import  Header  from "../components/header";
 import  Footer  from "../components/footer";
+import FloatingSamplesBadge from "../components/floating-samples-badge";
 import { Gabarito } from 'next/font/google';
 
 const gabarito = Gabarito({ 
@@ -24,6 +25,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           {children}
         </main>
         <Footer />
+        <FloatingSamplesBadge />
       </body>
     </html>
   );
