@@ -26,15 +26,15 @@ function HeroSection() {
       </div>
 
       {/* Hero Video */}
-      <div className="md:flex-1">
-        <div className="relative w-full h-[calc(100vh-16rem)] md:h-[28rem] bg-white rounded-lg overflow-hidden">
+      <div className="md:flex-1 -mx-4 md:mx-0">
+        <div className="relative w-full h-[calc(100vh-16rem)] md:h-[36rem] xl:max-w-[800px] xl:mx-auto md:rounded-lg overflow-hidden">
           <video
             src="/hero-video.mp4"
             autoPlay
             muted
             loop
             playsInline
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-top"
           />
         </div>
       </div>

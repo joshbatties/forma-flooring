@@ -80,8 +80,8 @@ export default function Header() {
   };
 
   return (
-    <header className="w-full bg-white shadow-sm relative">
-      <div className="max-w-[2200px] mx-auto px-4 py-6">
+    <header className="w-full bg-white md:bg-white/80 md:backdrop-blur-xl shadow-lg md:shadow-xl border-b border-gray-200 md:border-white/30 sticky top-0 z-50">
+      <div className="max-w-[2200px] mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           {/* Logo - Left side */}
           <div className="w-[300px]">
@@ -89,7 +89,7 @@ export default function Header() {
               <img 
                 src="/forma-flooring-mountain-black.png" 
                 alt="Forma Flooring Logo" 
-                className="h-20 w-auto object-contain" 
+                className="h-14 w-auto object-contain" 
               />
             </Link>
           </div>

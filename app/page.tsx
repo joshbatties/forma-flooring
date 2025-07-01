@@ -10,8 +10,8 @@ function HeroSection() {
     <section className="mt-6 md:mt-12 flex flex-col md:flex-row md:items-center md:justify-between space-y-8 md:space-y-0 md:space-x-8">
       {/* Text Content */}
       <div className="md:flex-1 space-y-4 text-center md:text-left">
-        <h1 className="text-5xl md:text-7xl font-bold leading-tight tracking-tight">
-          Beautiful Timber <br className="hidden md:block" /> Flooring
+        <h1 className="text-5xl md:text-8xl font-light leading-tight tracking-tight">
+          Beautiful Timber Flooring
         </h1>
         <p className="text-base md:text-lg text-gray-600 max-w-lg mx-auto md:mx-0">
           Transform your space with premium hardwood, engineered, and laminate timber flooring. 
@@ -28,15 +28,15 @@ function HeroSection() {
       </div>
 
       {/* Hero Video */}
-      <div className="md:flex-1">
-        <div className="relative w-full h-[calc(100vh-16rem)] md:h-[28rem] bg-white rounded-lg overflow-hidden">
+      <div className="md:flex-1 -mx-4 md:mx-0 bg-white">
+        <div className="relative w-full h-[calc(100vh-16rem)] md:h-[36rem] xl:max-w-[800px] xl:mx-auto md:rounded-lg overflow-hidden">
           <video
             src="/hero-video.mp4"
             autoPlay
             muted
             loop
             playsInline
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-top"
           />
         </div>
       </div>
