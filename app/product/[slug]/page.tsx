@@ -25,7 +25,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
     <div className="min-h-screen pb-16">
       {/* Breadcrumb Navigation */}
       <div className="bg-gray-50 py-4">
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-[2200px] mx-auto px-4">
           <div className="flex items-center text-sm text-gray-600">
             <Link href="/" className="hover:text-amber-600">Home</Link>
             <span className="mx-2">/</span>
@@ -51,7 +51,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
       
       {/* Product Header */}
       <div className="bg-white">
-        <div className="max-w-6xl mx-auto px-4 py-8">
+        <div className="max-w-[2200px] mx-auto px-4 py-8">
           <Link 
             href={`/${product.category}`}
             className="inline-flex items-center text-amber-600 hover:text-amber-800 mb-4"
@@ -65,7 +65,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
       
       {/* Product Overview */}
       <section className="py-8">
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-[2200px] mx-auto px-4">
           <div className="flex flex-col lg:flex-row gap-12">
             {/* Product Image */}
             <div className="lg:w-1/2">
@@ -119,7 +119,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
       {/* Product Specifications */}
       {product.specifications && Object.keys(product.specifications).length > 0 && (
         <section className="py-8 bg-gray-50">
-          <div className="max-w-6xl mx-auto px-4">
+          <div className="max-w-[2200px] mx-auto px-4">
             <h2 className="text-2xl font-semibold mb-6">Specifications</h2>
             <div className="bg-white rounded-lg shadow-sm overflow-hidden">
               <table className="w-full">
@@ -140,7 +140,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
       {/* Applications */}
       {product.applications && product.applications.length > 0 && (
         <section className="py-8">
-          <div className="max-w-6xl mx-auto px-4">
+          <div className="max-w-[2200px] mx-auto px-4">
             <h2 className="text-2xl font-semibold mb-6">Applications</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {product.applications.map((application, index) => (
@@ -159,7 +159,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
       {/* Related Products */}
       {relatedProducts.length > 0 && (
         <section className="py-8">
-          <div className="max-w-6xl mx-auto px-4">
+          <div className="max-w-[2200px] mx-auto px-4">
             <h2 className="text-2xl font-semibold mb-6">Related Products</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {relatedProducts.map((relatedProduct) => (

@@ -102,7 +102,7 @@ export default function ProductsPage() {
     <div className="min-h-screen py-8">
       {/* Breadcrumb Navigation */}
       <div className="bg-gray-50 py-4 mb-8">
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-[2200px] mx-auto px-4">
           <div className="flex items-center text-sm text-gray-600">
             <Link href="/" className="hover:text-amber-600">Home</Link>
             <span className="mx-2">/</span>
@@ -113,7 +113,7 @@ export default function ProductsPage() {
         </div>
       </div>
       
-      <div className="max-w-6xl mx-auto px-4">
+      <div className="max-w-[2200px] mx-auto px-4">
         {/* Page Header */}
         <div className="mb-8">
           <h1 className="text-3xl md:text-4xl font-bold mb-4">

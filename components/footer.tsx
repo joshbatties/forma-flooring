@@ -8,7 +8,7 @@ export default function Footer() {
   return (
     <footer className="w-full bg-white mt-10">
       {/* Main Footer */}
-      <div className="max-w-6xl mx-auto px-4 py-8">
+      <div className="max-w-[2200px] mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Information */}
           <div>
@@ -150,7 +150,7 @@ export default function Footer() {
       
       {/* Copyright */}
       <div className="border-t border-gray-200">
-        <div className="max-w-6xl mx-auto px-4 py-6 flex flex-col sm:flex-row justify-between items-center">
+        <div className="max-w-[2200px] mx-auto px-4 py-6 flex flex-col sm:flex-row justify-between items-center">
           <p className="text-sm text-gray-500">
             &copy; {currentYear} FORMA FLOORING. All rights reserved.
           </p>

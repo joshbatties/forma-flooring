@@ -101,7 +101,7 @@ function SupplyChainSection() {
 function OurValues() {
   return (
     <section className="bg-black text-white py-14 w-full">
-      <div className="max-w-6xl mx-auto px-4">
+      <div className="max-w-[2200px] mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <h2 className="text-3xl md:text-3xl font-light mt-6">Why Choose FORMA?</h2>
@@ -345,18 +345,18 @@ const flooringTestimonials = [
 export default function TimberFlooringPage() {
   return (
     <>
-      <div className="max-w-6xl mx-auto px-4 py-6 md:py-8">
+      <div className="max-w-[2200px] mx-auto px-4 py-6 md:py-8">
         <HeroSection />
       </div>
       
-      <div className="max-w-6xl mx-auto px-4 mb-16">
+      <div className="max-w-[2200px] mx-auto px-4 mb-16">
         <SupplyChainSection />
       </div>
       
       {/* Full-width black section */}
       <OurValues />
       
-      <div className="max-w-6xl mx-auto px-4">
+      <div className="max-w-[2200px] mx-auto px-4">
         <Collections />
         <OurPromise />
         <OurProcess />

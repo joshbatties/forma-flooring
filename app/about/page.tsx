@@ -95,7 +95,7 @@ export default function AboutPage() {
 
       {/* Company History & Mission */}
       <section className="py-16 px-4">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-[2200px] mx-auto">
           <div className="flex flex-col md:flex-row gap-12 items-center">
             <div className="md:w-1/2">
               <h2 className="text-3xl font-bold mb-6">About FORMA FLOORING</h2>
@@ -131,7 +131,7 @@ export default function AboutPage() {
 
       {/* Our Values Section */}
       <section className="py-16 bg-amber-50">
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-[2200px] mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">Our Core Values</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-white p-8 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
@@ -167,7 +167,7 @@ export default function AboutPage() {
 
       {/* Our Team Section */}
       <section className="py-16 px-4">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-[2200px] mx-auto">
           <h2 className="text-3xl font-bold text-center mb-4">Meet Our Team</h2>
           <p className="text-gray-600 text-center max-w-2xl mx-auto mb-12">
             Our dedicated team of professionals brings decades of combined experience in the timber industry.
@@ -195,7 +195,7 @@ export default function AboutPage() {
 
       {/* Our Approach Section */}
       <section className="py-16 bg-gray-50 px-4">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-[2200px] mx-auto">
           <div className="flex flex-col md:flex-row gap-12 items-center">
             <div className="md:w-1/2 relative h-[400px]">
               <Image 
@@ -251,7 +251,7 @@ export default function AboutPage() {
       </section>
       
       {/* Testimonials Section */}
-      <div className="max-w-6xl mx-auto px-4 pb-16">
+      <div className="max-w-[2200px] mx-auto px-4 pb-16">
         <TestimonialsCarousel
           title="What Our Clients Say"
           subtitle="Don't just take our word for it - hear from the customers who have trusted us with their projects."

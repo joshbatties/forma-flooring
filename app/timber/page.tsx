@@ -5,10 +5,10 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { LeafIcon, ShieldCheckIcon, TreesIcon, RecycleIcon } from "lucide-react";
-import { getProductsByCategory } from "@/data/products";
+import { products } from "@/data/products";
 
 export default function TimberPage() {
-  const timberProducts = getProductsByCategory('timber');
+  const timberProducts = products; // Show all flooring products since we're now flooring-focused
   
   // Get a few featured products to highlight (top 4)
   const highlightedProducts = timberProducts.slice(0, 4);
@@ -39,7 +39,7 @@ export default function TimberPage() {
 
       {/* Breadcrumb Navigation */}
       <div className="bg-gray-50 py-4">
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-[2200px] mx-auto px-4">
           <div className="flex items-center text-sm text-gray-600">
             <Link href="/" className="hover:text-amber-600">Home</Link>
             <span className="mx-2">/</span>
@@ -52,7 +52,7 @@ export default function TimberPage() {
 
       {/* Highlighted Products Section - NEW */}
       <section className="py-10 px-4 bg-white">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-[2200px] mx-auto">
           <div className="flex justify-between items-baseline mb-6">
             <h2 className="text-2xl md:text-3xl font-bold">Featured Timber Products</h2>
             <Link
@@ -99,7 +99,7 @@ export default function TimberPage() {
 
       {/* Introduction Section */}
       <section className="py-16 px-4 bg-gray-50">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-[2200px] mx-auto">
           <div className="flex flex-col md:flex-row gap-12 items-center">
             <div className="md:w-1/2">
               <h2 className="text-3xl font-bold mb-6">Premium Timber Solutions</h2>
@@ -127,7 +127,7 @@ export default function TimberPage() {
 
       {/* Product Categories */}
       <section className="py-16 px-4 bg-gray-50">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-[2200px] mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12">Timber Product Categories</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <Card className="overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
@@ -189,7 +189,7 @@ export default function TimberPage() {
 
       {/* Sustainability Section */}
       <section className="py-16 px-4 bg-amber-50">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-[2200px] mx-auto">
           <div className="flex flex-col md:flex-row gap-12 items-center">
             <div className="md:w-1/2 relative h-[400px]">
               <Image 
@@ -217,7 +217,7 @@ export default function TimberPage() {
 
       {/* Benefits Section */}
       <section className="py-16 px-4 bg-white">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-[2200px] mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12">Benefits of Our Timber Products</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="bg-gray-50 p-6 rounded-lg text-center">
@@ -265,7 +265,7 @@ export default function TimberPage() {
 
       {/* Featured Products */}
       <section className="py-16 px-4 bg-gray-50">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-[2200px] mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12">Featured Timber Products</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {featuredProducts.map((product) => (

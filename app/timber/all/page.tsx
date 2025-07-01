@@ -4,16 +4,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeftIcon } from "lucide-react";
 import { Card } from "@/components/ui/card";
-import { getProductsByCategory } from "@/data/products";
+import { products } from "@/data/products";
 
 export default function AllTimberProductsPage() {
-  const timberProducts = getProductsByCategory('timber');
+  const timberProducts = products; // Show all flooring products since we're now flooring-focused
   
   return (
     <div className="min-h-screen py-8">
       {/* Breadcrumb Navigation */}
       <div className="bg-gray-50 py-4 mb-8">
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-[2200px] mx-auto px-4">
           <div className="flex items-center text-sm text-gray-600">
             <Link href="/" className="hover:text-amber-600">Home</Link>
             <span className="mx-2">/</span>
@@ -26,7 +26,7 @@ export default function AllTimberProductsPage() {
         </div>
       </div>
       
-      <div className="max-w-6xl mx-auto px-4">
+      <div className="max-w-[2200px] mx-auto px-4">
         {/* Page Header */}
         <div className="mb-8">
           <Link 

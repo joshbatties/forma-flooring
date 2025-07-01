@@ -105,6 +105,8 @@ export function MainNav({ isMenuOpen, setMenuOpen }: MainNavProps) {
             >
               CONTACT
             </Link>
+
+            
           </li>
         </ul>
       </nav>

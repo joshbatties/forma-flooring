@@ -83,7 +83,7 @@ export default function TestimonialsCarousel({
       )}
 
       {/* Carousel Container */}
-      <div className="relative max-w-6xl mx-auto px-4">
+      <div className="relative max-w-[2200px] mx-auto px-4">
         {/* Previous Button */}
         <button 
           onClick={handlePrev}
