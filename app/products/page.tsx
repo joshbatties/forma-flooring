@@ -2,19 +2,22 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect, FormEvent, Suspense } from "react";
+import { useState, useEffect, FormEvent, Suspense, useCallback } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import { products } from "@/data/products";
-import { Search } from "lucide-react";
+import { Search, X } from "lucide-react";
 
 function ProductsPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const categoryParam = searchParams.get('category') as 'hardwood' | 'engineered' | 'laminate' | null;
+  const categoryParam = searchParams.get('category') as 'hardwood' | 'engineered' | 'laminate' | 'hybrid' | null;
   const searchQuery = searchParams.get('search') || '';
   
-  const [activeCategory, setActiveCategory] = useState<'all' | 'hardwood' | 'engineered' | 'laminate'>(
+  // Add state to track if category was directly accessed
+  const [isDirectCategoryAccess, setIsDirectCategoryAccess] = useState(!!categoryParam);
+  
+  const [activeCategory, setActiveCategory] = useState<'all' | 'hardwood' | 'engineered' | 'laminate' | 'hybrid'>(
     categoryParam ? categoryParam : 'all'
   );
   const [activeSubcategory, setActiveSubcategory] = useState<string | null>(
@@ -25,7 +28,7 @@ function ProductsPageContent() {
   
   // Update from URL params when they change
   useEffect(() => {
-    if (categoryParam && ['hardwood', 'engineered', 'laminate'].includes(categoryParam)) {
+    if (categoryParam && ['hardwood', 'engineered', 'laminate', 'hybrid'].includes(categoryParam)) {
       setActiveCategory(categoryParam);
     }
     
@@ -38,11 +41,13 @@ function ProductsPageContent() {
   }, [searchParams, categoryParam, searchQuery]);
   
   // Handle filter changes with animation
-  const handleCategoryChange = (category: 'all' | 'hardwood' | 'engineered' | 'laminate') => {
+  const handleCategoryChange = (category: 'all' | 'hardwood' | 'engineered' | 'laminate' | 'hybrid') => {
     setIsFiltering(true);
     setActiveCategory(category);
     // Reset subcategory when category changes
     setActiveSubcategory(null);
+    // Reset direct access flag when user changes category through filters
+    setIsDirectCategoryAccess(false);
     // Reset animation state after a short delay
     setTimeout(() => setIsFiltering(false), 300);
   };
@@ -54,16 +59,13 @@ function ProductsPageContent() {
     setTimeout(() => setIsFiltering(false), 300);
   };
 
-  // Handle search form submission
-  const handleSearch = (e: FormEvent) => {
-    e.preventDefault();
-    
-    // Build the new URL with search parameters
+  // Update URL with current filters without requiring form submission
+  const updateURL = useCallback((newSearchQuery: string) => {
     let url = '/products';
     const params = new URLSearchParams();
     
-    if (localSearchQuery) {
-      params.set('search', localSearchQuery);
+    if (newSearchQuery) {
+      params.set('search', newSearchQuery);
     }
     
     if (activeCategory !== 'all') {
@@ -79,8 +81,17 @@ function ProductsPageContent() {
       url += `?${queryString}`;
     }
     
-    router.push(url);
-  };
+    router.push(url, { scroll: false });
+  }, [activeCategory, activeSubcategory, router]);
+
+  // Debounce the URL update to avoid too many history entries
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      updateURL(localSearchQuery);
+    }, 300); // Wait for 300ms of no typing before updating URL
+
+    return () => clearTimeout(timer);
+  }, [localSearchQuery, updateURL]);
   
   // Get available subcategories for the selected category
   const subcategories = activeCategory !== 'all'
@@ -124,19 +135,36 @@ function ProductsPageContent() {
   // Function to get category display name
   const getCategoryDisplayName = (category: string) => {
     switch (category) {
-      case 'hardwood': return 'Hardwood Flooring';
-      case 'engineered': return 'Engineered Flooring';
-      case 'laminate': return 'Laminate Flooring';
-      default: return 'All Flooring';
+      case 'hardwood': return 'Hardwood';
+      case 'engineered': return 'Engineered';
+      case 'laminate': return 'Laminate';
+      case 'hybrid': return 'Hybrid';
+      default: return 'All Products';
+    }
+  };
+
+  // Function to get category description
+  const getCategoryDescription = (category: string) => {
+    switch (category) {
+      case 'hardwood': 
+        return 'Premium solid hardwood flooring featuring Australian native and European species. Known for exceptional durability and timeless beauty.';
+      case 'engineered': 
+        return 'Engineered flooring combining real timber with enhanced stability. Available in wide boards and designer patterns like herringbone.';
+      case 'laminate': 
+        return 'High-performance laminate flooring offering exceptional durability and realistic wood appearance at great value.';
+      case 'hybrid': 
+        return 'Advanced hybrid flooring technology combining the best features of multiple materials. 100% waterproof and ideal for challenging environments.';
+      default: 
+        return 'Explore our complete range of premium flooring solutions. From traditional hardwoods to innovative hybrid options, find the perfect floor for your space.';
     }
   };
 
   return (
     <div className="min-h-screen py-8">
       {/* Breadcrumb Navigation */}
-      <div className="bg-gray-50 py-4 mb-8">
+      <div className="bg-gray-50 py-3 mb-4">
         <div className="max-w-[2200px] mx-auto px-4">
-          <div className="flex items-center text-sm text-gray-600">
+          <div className="flex items-center text-xs text-gray-600">
             <Link href="/" className="hover:text-amber-600">Home</Link>
             <span className="mx-2">/</span>
             <span className="text-gray-900 font-medium">
@@ -149,10 +177,10 @@ function ProductsPageContent() {
       <div className="max-w-[2200px] mx-auto px-4">
         {/* Page Header */}
         <div className="mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">
-            {searchQuery 
-              ? `Search Results for "${searchQuery}"`
-              : activeCategory === 'all' ? 'Our Complete Flooring Range' : getCategoryDisplayName(activeCategory)
+          <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold mb-4">
+            {isDirectCategoryAccess && activeCategory !== 'all'
+              ? getCategoryDisplayName(activeCategory)
+              : 'Explore'
             }
           </h1>
           <p className="text-gray-600 max-w-3xl">
@@ -160,11 +188,7 @@ function ProductsPageContent() {
               ? `Found ${filteredProducts.length} ${filteredProducts.length === 1 ? 'product' : 'products'} matching "${searchQuery}"`
               : activeCategory === 'all' 
                 ? 'Discover our extensive collection of premium timber flooring solutions. From solid hardwood to engineered and laminate options, all our flooring products are carefully selected for beauty, durability, and performance.'
-                : `Explore our ${
-                    activeCategory === 'hardwood' ? 'premium solid hardwood flooring with natural beauty and exceptional durability' : 
-                    activeCategory === 'engineered' ? 'engineered timber flooring offering superior stability and versatile installation options' : 
-                    'high-quality laminate flooring providing excellent value and performance for busy spaces'
-                  }.`
+                : getCategoryDescription(activeCategory)
             }
           </p>
           {searchQuery && (
@@ -179,9 +203,9 @@ function ProductsPageContent() {
           )}
         </div>
 
-        {/* Search Box */}
+        {/* Search Box - Updated to remove form */}
         <div className="mb-8">
-          <form onSubmit={handleSearch} className="flex flex-col sm:flex-row gap-2">
+          <div className="flex flex-col sm:flex-row gap-2">
             <div className="relative flex-grow">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
               <input
@@ -191,82 +215,113 @@ function ProductsPageContent() {
                 placeholder="Search for flooring products..."
                 className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
               />
+              {localSearchQuery && (
+                <button
+                  onClick={() => setLocalSearchQuery('')}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              )}
             </div>
-            <button 
-              type="submit"
-              className="px-6 py-3 bg-amber-600 text-white font-medium rounded-lg hover:bg-amber-700 transition-colors sm:whitespace-nowrap"
-            >
-              Search
-            </button>
-          </form>
+          </div>
         </div>
+
+        {/* Filter Results Summary */}
+        {localSearchQuery && (
+          <div className="mb-6">
+            <p className="text-gray-600">
+              Found {filteredProducts.length} {filteredProducts.length === 1 ? 'product' : 'products'} 
+              matching &quot;{localSearchQuery}&quot;
+            </p>
+          </div>
+        )}
         
         {/* Category Filters */}
         <div className="mb-8">
-          <div className="flex flex-wrap gap-3 mb-4">
-            <button 
+          <h2 className="text-lg font-semibold mb-2">Categories</h2>
+          <div className="flex flex-wrap gap-2">
+            <button
               onClick={() => handleCategoryChange('all')}
-              className={`px-4 py-2 rounded-full font-medium transition-colors duration-200
-                ${activeCategory === 'all' 
-                  ? 'bg-amber-600 text-white' 
-                  : 'bg-gray-100 hover:bg-gray-200 text-gray-800'}`}
+              className={`px-4 py-2 rounded-lg transition-colors ${
+                activeCategory === 'all'
+                  ? 'bg-amber-600 text-white'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              }`}
             >
               All Flooring
             </button>
-            <button 
+            <button
               onClick={() => handleCategoryChange('hardwood')}
-              className={`px-4 py-2 rounded-full font-medium transition-colors duration-200
-                ${activeCategory === 'hardwood' 
-                  ? 'bg-amber-600 text-white' 
-                  : 'bg-gray-100 hover:bg-gray-200 text-gray-800'}`}
+              className={`px-4 py-2 rounded-lg transition-colors ${
+                activeCategory === 'hardwood'
+                  ? 'bg-amber-600 text-white'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              }`}
             >
-              Hardwood Flooring
+              Hardwood
             </button>
-            <button 
+            <button
               onClick={() => handleCategoryChange('engineered')}
-              className={`px-4 py-2 rounded-full font-medium transition-colors duration-200
-                ${activeCategory === 'engineered' 
-                  ? 'bg-amber-600 text-white' 
-                  : 'bg-gray-100 hover:bg-gray-200 text-gray-800'}`}
+              className={`px-4 py-2 rounded-lg transition-colors ${
+                activeCategory === 'engineered'
+                  ? 'bg-amber-600 text-white'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              }`}
             >
-              Engineered Flooring
+              Engineered
             </button>
-            <button 
-              onClick={() => handleCategoryChange('laminate')}
-              className={`px-4 py-2 rounded-full font-medium transition-colors duration-200
-                ${activeCategory === 'laminate' 
-                  ? 'bg-amber-600 text-white' 
-                  : 'bg-gray-100 hover:bg-gray-200 text-gray-800'}`}
+            <button
+              onClick={() => handleCategoryChange('hybrid')}
+              className={`px-4 py-2 rounded-lg transition-colors ${
+                activeCategory === 'hybrid'
+                  ? 'bg-amber-600 text-white'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              }`}
             >
-              Laminate Flooring
+              Hybrid
+            </button>
+            <button
+              onClick={() => handleCategoryChange('laminate')}
+              className={`px-4 py-2 rounded-lg transition-colors ${
+                activeCategory === 'laminate'
+                  ? 'bg-amber-600 text-white'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              }`}
+            >
+              Laminate
             </button>
           </div>
           
-          {/* Subcategory filters (only shown when a main category is selected) */}
-          {activeCategory !== 'all' && subcategories.length > 0 && (
-            <div className="flex flex-wrap gap-2 mb-4 pl-1">
-              <button
-                onClick={() => handleSubcategoryChange(null)}
-                className={`px-3 py-1 text-sm rounded-full font-medium transition-colors duration-200
-                  ${activeSubcategory === null
-                    ? 'bg-amber-200 text-amber-800'
-                    : 'bg-gray-50 hover:bg-gray-100 text-gray-600'}`}
-              >
-                All {getCategoryDisplayName(activeCategory)}
-              </button>
-              
-              {subcategories.map(subcategory => (
+          {/* Subcategory Filters */}
+          {subcategories.length > 0 && (
+            <div className="mb-8">
+              <h2 className="text-lg font-semibold mb-2">Types</h2>
+              <div className="flex flex-wrap gap-2">
                 <button
-                  key={subcategory}
-                  onClick={() => handleSubcategoryChange(subcategory)}
-                  className={`px-3 py-1 text-sm rounded-full font-medium transition-colors duration-200
-                    ${activeSubcategory === subcategory
-                      ? 'bg-amber-200 text-amber-800'
-                      : 'bg-gray-50 hover:bg-gray-100 text-gray-600'}`}
+                  onClick={() => handleSubcategoryChange(null)}
+                  className={`px-4 py-2 rounded-lg transition-colors ${
+                    !activeSubcategory
+                      ? 'bg-amber-600 text-white'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
                 >
-                  {subcategory.charAt(0).toUpperCase() + subcategory.slice(1)}
+                  All Types
                 </button>
-              ))}
+                {subcategories.map((subcategory) => (
+                  <button
+                    key={subcategory}
+                    onClick={() => handleSubcategoryChange(subcategory)}
+                    className={`px-4 py-2 rounded-lg transition-colors ${
+                      activeSubcategory === subcategory
+                        ? 'bg-amber-600 text-white'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
+                  >
+                    {subcategory.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
+                  </button>
+                ))}
+              </div>
             </div>
           )}
           
@@ -279,44 +334,46 @@ function ProductsPageContent() {
           </p>
         </div>
         
-        {/* Products Grid - with animation */}
-        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 transition-opacity duration-300 ${isFiltering ? 'opacity-50' : 'opacity-100'}`}>
+        {/* Product Grid */}
+        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 ${
+          isFiltering ? 'opacity-50' : 'opacity-100'
+        } transition-opacity duration-300`}>
           {filteredProducts.map((product) => (
-            <Card 
-              key={product.id} 
-              className="overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1"
-            >
-              <div className="relative h-48">
-                <Image 
-                  src={product.image}
-                  alt={product.name}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="p-6">
-                <div className="mb-2">
-                  <span className="inline-block px-2 py-1 bg-amber-100 text-xs font-medium text-amber-800 rounded capitalize">
-                    {getCategoryDisplayName(product.category)}
-                  </span>
-                  {product.subcategory && (
-                    <span className="inline-block ml-2 px-2 py-1 bg-gray-50 text-xs font-medium text-gray-600 rounded capitalize">
-                      {product.subcategory}
-                    </span>
-                  )}
+            <Link key={product.id} href={`/products/${product.slug}`}>
+              <Card className="h-full hover:shadow-lg transition-shadow overflow-hidden group">
+                <div className="aspect-w-16 aspect-h-9 relative overflow-hidden">
+                  <Image
+                    src={product.image}
+                    alt={product.name}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">{product.name}</h3>
-                <p className="text-gray-600 text-sm line-clamp-2 mb-3">
-                  {product.description}
-                </p>
-                <Link 
-                  href={`/products/${product.slug}`} 
-                  className="text-amber-600 hover:text-amber-800 text-sm font-medium"
-                >
-                  View Details →
-                </Link>
-              </div>
-            </Card>
+                <div className="p-4">
+                  <h3 className="font-semibold text-lg mb-2 group-hover:text-amber-600 transition-colors">
+                    {product.name}
+                  </h3>
+                  <div className="space-y-2">
+                    <p className="text-sm text-amber-600">
+                      {getCategoryDisplayName(product.category)}
+                    </p>
+                    {product.price_range && (
+                      <p className="text-sm text-gray-600">
+                        Price Range: {product.price_range}
+                      </p>
+                    )}
+                    {product.warranty && (
+                      <p className="text-sm text-gray-600">
+                        Warranty: {product.warranty}
+                      </p>
+                    )}
+                  </div>
+                  <p className="text-gray-600 text-sm mt-2 line-clamp-2">
+                    {product.description}
+                  </p>
+                </div>
+              </Card>
+            </Link>
           ))}
         </div>
         

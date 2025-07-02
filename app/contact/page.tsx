@@ -52,7 +52,7 @@ export default function ContactPage() {
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">Get in Touch</h1>
             <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-              Have questions about our timber products or need a quote for your next project?
+              Have questions about our flooring products or need a quote for your next project?
               We&apos;re here to help bring your vision to life.
             </p>
           </div>
@@ -70,7 +70,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="font-semibold text-lg">Our Location</h3>
-                      <p className="text-gray-600">123 Timber Lane, Melbourne VIC 3000</p>
+                      <p className="text-gray-600">123 Flooring Way, Melbourne VIC 3000</p>
                     </div>
                   </div>
                   
@@ -90,7 +90,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="font-semibold text-lg">Email</h3>
-                      <p className="text-gray-600">info@jpctimber.com.au</p>
+                      <p className="text-gray-600">info@formaflooring.com.au</p>
                     </div>
                   </div>
                   
