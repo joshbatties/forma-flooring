@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { blogPosts } from "@/data/blog-posts";
 
 export default function BlogPage() {
-  return (
+    return (
     <div className="min-h-screen py-8">
       {/* Breadcrumb Navigation */}
       <div className="bg-gray-50 py-4 mb-8">
@@ -24,7 +24,7 @@ export default function BlogPage() {
           <p className="text-gray-600">
             Explore our collection of articles, guides, and inspiration for all things related to timber flooring. 
             From practical tips to design trends, our blog is your resource for making informed flooring decisions.
-          </p>
+        </p>
         </div>
         
         {/* Featured Post */}
@@ -106,5 +106,5 @@ export default function BlogPage() {
         </div>
       </div>
     </div>
-  );
-} 
+    );
+  }

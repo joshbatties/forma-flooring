@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Mail, Phone, MapPin, Facebook, Instagram, Twitter, Linkedin } from "lucide-react";
+import { XIcon } from "./icons";
 import Image from "next/image";
 
 export default function Footer() {
@@ -26,16 +27,16 @@ export default function Footer() {
               Crafting exceptional flooring solutions with a commitment to quality, sustainability, and timeless design since 1998.
             </p>
             <div className="flex space-x-4 mb-6">
-              <a href="#" className="text-gray-500 hover:text-gray-700 transition-colors">
+              <a href="#" className="text-gray-500 hover:text-[#1877F2] transition-colors">
                 <Facebook className="h-5 w-5" />
               </a>
-              <a href="#" className="text-gray-500 hover:text-gray-700 transition-colors">
+              <a href="#" className="text-gray-500 hover:text-[#E4405F] transition-colors">
                 <Instagram className="h-5 w-5" />
               </a>
-              <a href="#" className="text-gray-500 hover:text-gray-700 transition-colors">
-                <Twitter className="h-5 w-5" />
+              <a href="#" className="text-gray-500 hover:text-black transition-colors">
+                <XIcon size={20} />
               </a>
-              <a href="#" className="text-gray-500 hover:text-gray-700 transition-colors">
+              <a href="#" className="text-gray-500 hover:text-[#0A66C2] transition-colors">
                 <Linkedin className="h-5 w-5" />
               </a>
             </div>

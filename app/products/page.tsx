@@ -8,6 +8,70 @@ import { Card } from "@/components/ui/card";
 import { products } from "@/data/products";
 import { Search, X } from "lucide-react";
 
+// Add CategoryBackground component
+function CategoryBackground({ category }: { category: string }) {
+  const [height, setHeight] = useState(0);
+  
+  useEffect(() => {
+    const updateHeight = () => {
+      const searchBox = document.querySelector('[data-search-box]');
+      if (searchBox) {
+        const searchBoxRect = searchBox.getBoundingClientRect();
+        const height = searchBoxRect.top - 80; // Just account for the header and a small gap
+        setHeight(height);
+      }
+    };
+
+    // Initial measurement
+    updateHeight();
+    
+    // Update on resize and scroll
+    window.addEventListener('resize', updateHeight);
+    window.addEventListener('scroll', updateHeight);
+    
+    return () => {
+      window.removeEventListener('resize', updateHeight);
+      window.removeEventListener('scroll', updateHeight);
+    };
+  }, []);
+
+  // Only show on desktop screens
+  return (
+    <div 
+      className="absolute top-0 -right-0 hidden xl:flex pointer-events-none translate-x-0"
+      style={{ height: `${height}px` }}
+    >
+      <div className="relative w-[400px]">
+        <Image
+          src={`/${category}-background.svg`}
+          alt={`${category} background`}
+          fill
+          className="object-contain"
+          priority
+        />
+      </div>
+      <div className="relative w-[400px]">
+        <Image
+          src={`/${category}-background2.svg`}
+          alt={`${category} background 2`}
+          fill
+          className="object-contain"
+          priority
+        />
+      </div>
+      <div className="relative w-[400px]">
+        <Image
+          src={`/${category}-background3.svg`}
+          alt={`${category} background 3`}
+          fill
+          className="object-contain"
+          priority
+        />
+      </div>
+    </div>
+  );
+}
+
 function ProductsPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -160,19 +224,8 @@ function ProductsPageContent() {
   };
 
   return (
-    <div className="min-h-screen py-8">
-      {/* Breadcrumb Navigation */}
-      <div className="bg-gray-50 py-3 mb-4">
-        <div className="max-w-[2200px] mx-auto px-4">
-          <div className="flex items-center text-xs text-gray-600">
-            <Link href="/" className="hover:text-amber-600">Home</Link>
-            <span className="mx-2">/</span>
-            <span className="text-gray-900 font-medium">
-              {activeCategory === 'all' ? 'All Flooring' : getCategoryDisplayName(activeCategory)}
-            </span>
-          </div>
-        </div>
-      </div>
+    <div className="min-h-screen py-8 relative">
+      <CategoryBackground category={activeCategory === 'all' ? 'hardwood' : activeCategory} />
       
       <div className="max-w-[2200px] mx-auto px-4">
         {/* Page Header */}
@@ -204,7 +257,7 @@ function ProductsPageContent() {
         </div>
 
         {/* Search Box - Updated to remove form */}
-        <div className="mb-8">
+        <div className="mb-8" data-search-box>
           <div className="flex flex-col sm:flex-row gap-2">
             <div className="relative flex-grow">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
