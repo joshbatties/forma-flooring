@@ -13,12 +13,14 @@ interface TestimonialsProps {
   title?: string;
   subtitle?: string;
   testimonials: Testimonial[];
+  showCta?: boolean;
 }
 
 const NewTestimonials = ({ 
   title = "Our happy clients say about us", 
   subtitle = "Customer testimonials", 
-  testimonials 
+  testimonials,
+  showCta = true
 }: TestimonialsProps) => {        
     // Take first 3 testimonials for display
     const displayTestimonials = testimonials.slice(0, 3);
@@ -32,10 +34,12 @@ const NewTestimonials = ({
                 <h2 className="mt-0 text-3xl font-bold text-gray-900 sm:text-4xl xl:text-5xl font-pj">{title}</h2>
             </div>
 
-            <div className="mt-8 text-center md:mt-16 md:order-3">
+            {showCta && (
+                <div className="mt-8 text-center md:mt-16 md:order-3">
                 <a href="/contact" title="" className="pb-2 text-base font-bold leading-7 text-gray-900 transition-all duration-200 border-b-2 border-gray-900 hover:border-gray-600 font-pj focus:outline-none focus:ring-1 focus:ring-gray-900 focus:ring-offset-2 hover:text-gray-600"> Get in touch with us </a>
             </div>
 
+                        )}
             <div className="relative mt-10 md:mt-24 md:order-2">
                 <div className="absolute -inset-x-1 inset-y-16 md:-inset-x-2 md:-inset-y-6">
                     <div 

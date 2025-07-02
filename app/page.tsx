@@ -61,7 +61,7 @@ function ProductCategories() {
         <div className="flex gap-8">
           {/* Left 1/3 - Text Content */}
           <div className="w-1/3 space-y-8">
-            <h2 className="text-6xl xl:text-7xl font-light text-gray-900 leading-tight">Our products</h2>
+            <h2 className="text-6xl xl:text-7xl font-light text-gray-900 leading-tight">Our Products</h2>
             
             {/* Hardwood */}
             <div className="space-y-2">
@@ -202,7 +202,7 @@ function ProductCategories() {
       <div className="md:hidden space-y-12">
         {/* Text Content - Mobile version of left 1/3 */}
         <div className="space-y-8">
-          <h2 className="text-6xl font-light text-gray-900">Our products</h2>
+          <h2 className="text-6xl font-light text-gray-900">Our Products</h2>
           
           {/* Hardwood */}
           <div className="space-y-2">
@@ -537,7 +537,7 @@ function FeaturedProducts() {
         <div className="max-w-5xl mx-auto">
         <h2 className="text-3xl font-bold text-center">Trending</h2>
       <p className="text-gray-600 text-center mt-2">
-        Our most popular timber flooring products
+        See what's hot right now
       </p>
       <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {/* Product 1 */}
@@ -618,7 +618,7 @@ function FeaturedProducts() {
       </div>
       <div className="mt-8 text-center">
         <Button asChild size="lg">
-          <Link href="/products">View All Products</Link>
+          <Link href="/products">View All</Link>
         </Button>
       </div>
       </div>
@@ -626,7 +626,7 @@ function FeaturedProducts() {
   );
 }
 
-const homeTestimonials = [
+export const homeTestimonials = [
   {
     id: 1,
     quote: "Their selection of timber flooring is outstanding. The staff provided expert advice that helped me choose the perfect option for my home renovation.",

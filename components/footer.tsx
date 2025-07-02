@@ -98,17 +98,17 @@ export default function Footer() {
             <h3 className="text-lg font-semibold text-gray-700 mb-6 border-l-2 border-gray-500 pl-3">Products</h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/products/hardwood" className="text-gray-500 hover:text-gray-700 transition-colors">
+                <Link href="/products?category=hardwood" className="text-gray-500 hover:text-gray-700 transition-colors">
                   Hardwood Flooring
                 </Link>
               </li>
               <li>
-                <Link href="/products/engineered" className="text-gray-500 hover:text-gray-700 transition-colors">
+                <Link href="/products?category=engineered" className="text-gray-500 hover:text-gray-700 transition-colors">
                   Engineered Flooring
                 </Link>
               </li>
               <li>
-                <Link href="/products/laminate" className="text-gray-500 hover:text-gray-700 transition-colors">
+                <Link href="/products?category=laminate" className="text-gray-500 hover:text-gray-700 transition-colors">
                   Laminate Flooring
                 </Link>
               </li>

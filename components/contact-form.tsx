@@ -124,7 +124,7 @@ export function ContactForm() {
         <Button 
           type="submit" 
           disabled={submitting || success} 
-          className={`w-full sm:w-auto relative ${success ? "bg-green-600 hover:bg-green-700" : "bg-amber-600 hover:bg-amber-700"} transition-colors duration-200`}
+          className={`w-full sm:w-auto relative ${success ? "bg-green-600 hover:bg-green-700" : "bg-black hover:bg-gray-800"} transition-colors duration-200`}
         >
           {submitting ? (
             <>

@@ -2,7 +2,8 @@
 
 import { ContactForm } from "../../components/contact-form";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
-import TestimonialsCarousel from "../../components/TestimonialsCarousel";
+import NewTestimonials from "../../components/new-testimonial";
+import { homeTestimonials } from "../page";
 
 const contactTestimonials = [
   {
@@ -65,8 +66,8 @@ export default function ContactPage() {
                 <h2 className="text-2xl font-semibold mb-6">Contact Information</h2>
                 <div className="space-y-5">
                   <div className="flex items-start">
-                    <div className="bg-amber-100 p-3 rounded-full mr-4">
-                      <MapPin className="h-5 w-5 text-amber-600" />
+                    <div className="bg-gray-100 p-3 rounded-full mr-4">
+                      <MapPin className="h-5 w-5 text-black" />
                     </div>
                     <div>
                       <h3 className="font-semibold text-lg">Our Location</h3>
@@ -75,8 +76,8 @@ export default function ContactPage() {
                   </div>
                   
                   <div className="flex items-start">
-                    <div className="bg-amber-100 p-3 rounded-full mr-4">
-                      <Phone className="h-5 w-5 text-amber-600" />
+                    <div className="bg-gray-100 p-3 rounded-full mr-4">
+                      <Phone className="h-5 w-5 text-black" />
                     </div>
                     <div>
                       <h3 className="font-semibold text-lg">Phone</h3>
@@ -85,8 +86,8 @@ export default function ContactPage() {
                   </div>
                   
                   <div className="flex items-start">
-                    <div className="bg-amber-100 p-3 rounded-full mr-4">
-                      <Mail className="h-5 w-5 text-amber-600" />
+                    <div className="bg-gray-100 p-3 rounded-full mr-4">
+                      <Mail className="h-5 w-5 text-black" />
                     </div>
                     <div>
                       <h3 className="font-semibold text-lg">Email</h3>
@@ -95,8 +96,8 @@ export default function ContactPage() {
                   </div>
                   
                   <div className="flex items-start">
-                    <div className="bg-amber-100 p-3 rounded-full mr-4">
-                      <Clock className="h-5 w-5 text-amber-600" />
+                    <div className="bg-gray-100 p-3 rounded-full mr-4">
+                      <Clock className="h-5 w-5 text-black" />
                     </div>
                     <div>
                       <h3 className="font-semibold text-lg">Hours</h3>
@@ -117,7 +118,7 @@ export default function ContactPage() {
             </div>
             
             {/* Contact Form */}
-            <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+            <div>
               <h2 className="text-2xl font-semibold mb-6">Send Us a Message</h2>
               <p className="text-gray-600 mb-6">
                 Fill out the form below, and our team will get back to you promptly.
@@ -129,12 +130,12 @@ export default function ContactPage() {
       </div>
       
       {/* Add Testimonials */}
-      <div className="bg-gray-50 py-12 mt-16">
+      <div className="bg-white py-12 mt-16">
         <div className="max-w-7xl mx-auto px-4">
-          <TestimonialsCarousel
-            title="Our Customer Service Experience"
-            subtitle="See what clients are saying about working with our team."
-            testimonials={contactTestimonials}
+          <NewTestimonials
+            title="What our clients say"
+            subtitle="Dont just take our word for it"
+            testimonials={homeTestimonials} showCta={false}
           />
         </div>
       </div>

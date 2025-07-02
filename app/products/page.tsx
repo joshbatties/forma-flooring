@@ -225,7 +225,7 @@ function ProductsPageContent() {
 
   return (
     <div className="min-h-screen py-8 relative">
-      <CategoryBackground category={activeCategory === 'all' ? 'hardwood' : activeCategory} />
+      
       
       <div className="max-w-[2200px] mx-auto px-4">
         {/* Page Header */}
