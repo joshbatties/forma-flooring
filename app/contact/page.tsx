@@ -3,8 +3,9 @@
 import { ContactForm } from "../../components/contact-form";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import NewTestimonials from "../../components/new-testimonial";
-import { homeTestimonials } from "../page";
+import { homeTestimonials } from "@/lib/testimonials";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const contactTestimonials = [
   {
     id: 1,

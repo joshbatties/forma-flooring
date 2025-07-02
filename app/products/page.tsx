@@ -2,75 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect, FormEvent, Suspense, useCallback } from "react";
+import { useState, useEffect, Suspense, useCallback } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import { products } from "@/data/products";
 import { Search, X } from "lucide-react";
-
-// Add CategoryBackground component
-function CategoryBackground({ category }: { category: string }) {
-  const [height, setHeight] = useState(0);
-  
-  useEffect(() => {
-    const updateHeight = () => {
-      const searchBox = document.querySelector('[data-search-box]');
-      if (searchBox) {
-        const searchBoxRect = searchBox.getBoundingClientRect();
-        const height = searchBoxRect.top - 80; // Just account for the header and a small gap
-        setHeight(height);
-      }
-    };
-
-    // Initial measurement
-    updateHeight();
-    
-    // Update on resize and scroll
-    window.addEventListener('resize', updateHeight);
-    window.addEventListener('scroll', updateHeight);
-    
-    return () => {
-      window.removeEventListener('resize', updateHeight);
-      window.removeEventListener('scroll', updateHeight);
-    };
-  }, []);
-
-  // Only show on desktop screens
-  return (
-    <div 
-      className="absolute top-0 -right-0 hidden xl:flex pointer-events-none translate-x-0"
-      style={{ height: `${height}px` }}
-    >
-      <div className="relative w-[400px]">
-        <Image
-          src={`/${category}-background.svg`}
-          alt={`${category} background`}
-          fill
-          className="object-contain"
-          priority
-        />
-      </div>
-      <div className="relative w-[400px]">
-        <Image
-          src={`/${category}-background2.svg`}
-          alt={`${category} background 2`}
-          fill
-          className="object-contain"
-          priority
-        />
-      </div>
-      <div className="relative w-[400px]">
-        <Image
-          src={`/${category}-background3.svg`}
-          alt={`${category} background 3`}
-          fill
-          className="object-contain"
-          priority
-        />
-      </div>
-    </div>
-  );
-}
 
 function ProductsPageContent() {
   const router = useRouter();

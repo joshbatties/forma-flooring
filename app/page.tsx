@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Button } from "../components/ui/button";
 import Link from "next/link";
 import NewTestimonials from "../components/new-testimonial";
+import { homeTestimonials } from "@/lib/testimonials";
 
 function HeroSection() {
   return (
@@ -537,7 +538,7 @@ function FeaturedProducts() {
         <div className="max-w-5xl mx-auto">
         <h2 className="text-3xl font-bold text-center">Trending</h2>
       <p className="text-gray-600 text-center mt-2">
-        See what's hot right now
+        See what&apos;s hot right now
       </p>
       <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {/* Product 1 */}
@@ -626,7 +627,7 @@ function FeaturedProducts() {
   );
 }
 
-export const homeTestimonials = [
+/* export const homeTestimonials = [
   {
     id: 1,
     quote: "Their selection of timber flooring is outstanding. The staff provided expert advice that helped me choose the perfect option for my home renovation.",
@@ -669,7 +670,7 @@ export const homeTestimonials = [
       role: "DIY Enthusiast",
       image: "/testimonial-person3.png"
   }
-];
+*/
 
 export default function HomePage() {
   return (
