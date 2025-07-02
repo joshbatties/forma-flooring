@@ -22,7 +22,7 @@ export default function TermsOfServicePage() {
           <section className="mb-8">
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">Introduction</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              Welcome to FORMA FLOORING. These Terms of Service ("Terms") govern your use of our website and services. By accessing or using our website, requesting quotes, purchasing products, or using our services, you agree to be bound by these Terms.
+              Welcome to FORMA FLOORING. These Terms of Service (&quot;Terms&quot;) govern your use of our website and services. By accessing or using our website, requesting quotes, purchasing products, or using our services, you agree to be bound by these Terms.
             </p>
             <p className="text-gray-700 leading-relaxed">
               If you disagree with any part of these Terms, you may not access our website or use our services.
@@ -78,7 +78,7 @@ export default function TermsOfServicePage() {
             <ul className="list-disc pl-6 text-gray-700 mb-6 space-y-2">
               <li>Use our website for any unlawful purpose or activity</li>
               <li>Attempt to gain unauthorized access to our systems</li>
-              <li>Interfere with or disrupt our website's functionality</li>
+              <li>Interfere with or disrupt our website&apos;s functionality</li>
               <li>Upload or transmit viruses, malware, or harmful code</li>
               <li>Copy, reproduce, or distribute our content without permission</li>
               <li>Use automated tools to extract data from our website</li>
@@ -263,7 +263,7 @@ export default function TermsOfServicePage() {
           <section className="mb-8">
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">Changes to These Terms</h2>
             <p className="text-gray-700 leading-relaxed">
-              We reserve the right to modify these Terms at any time. Changes will be posted on this page with an updated "Last updated" date. Your continued use of our services after changes are posted constitutes acceptance of the new Terms. We recommend reviewing these Terms periodically.
+              We reserve the right to modify these Terms at any time. Changes will be posted on this page with an updated &quot;Last updated&quot; date. Your continued use of our services after changes are posted constitutes acceptance of the new Terms. We recommend reviewing these Terms periodically.
             </p>
           </section>
 

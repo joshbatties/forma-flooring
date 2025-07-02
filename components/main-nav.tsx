@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, Dispatch, SetStateAction, useEffect } from "react";
 import { ChevronDown, X } from "lucide-react";
-import { Icons } from "./icons";
 
 interface MainNavProps {
   isMenuOpen?: boolean;
@@ -12,7 +12,6 @@ interface MainNavProps {
 
 export function MainNav({ isMenuOpen, setMenuOpen }: MainNavProps) {
   const [productsOpen, setProductsOpen] = useState(false);
-  const MenuIcon = Icons.menu;
   
   // Use provided state if available, otherwise use internal state
   const [internalOpen, setInternalOpen] = useState(false);
@@ -75,7 +74,7 @@ export function MainNav({ isMenuOpen, setMenuOpen }: MainNavProps) {
               </li>
               <li className="py-1">
                 <Link
-                  href="/timber/flooring"
+                  href="/products?category=hardwood"
                   className="block px-3 py-2 text-md hover:text-amber-600 transition-colors duration-200 rounded-md hover:bg-amber-50/50"
                   onClick={() => setProductsOpen(false)}
                 >
@@ -84,7 +83,7 @@ export function MainNav({ isMenuOpen, setMenuOpen }: MainNavProps) {
               </li>
               <li className="py-1">
                 <Link
-                  href="/timber/flooring?type=engineered"
+                  href="/products?category=engineered"
                   className="block px-3 py-2 text-md hover:text-amber-600 transition-colors duration-200 rounded-md hover:bg-amber-50/50"
                   onClick={() => setProductsOpen(false)}
                 >
@@ -93,7 +92,7 @@ export function MainNav({ isMenuOpen, setMenuOpen }: MainNavProps) {
               </li>
               <li className="py-1">
                 <Link
-                  href="/timber/flooring?type=laminate"
+                  href="/products?category=laminate"
                   className="block px-3 py-2 text-md hover:text-amber-600 transition-colors duration-200 rounded-md hover:bg-amber-50/50"
                   onClick={() => setProductsOpen(false)}
                 >
@@ -136,10 +135,12 @@ export function MainNav({ isMenuOpen, setMenuOpen }: MainNavProps) {
         style={{ backgroundColor: 'white' }}
       >
         <div className="p-6 flex justify-between items-center border-b flex-shrink-0">
-          <img 
+          <Image 
             src="/forma-flooring-logo-colors.png" 
             alt="Forma Flooring Logo" 
             className="h-16 w-auto object-contain" 
+            width={64}
+            height={64}
           />
           <button 
             onClick={() => handleSetOpen(false)}
@@ -183,7 +184,7 @@ export function MainNav({ isMenuOpen, setMenuOpen }: MainNavProps) {
               </li>
               <li>
                 <Link
-                  href="/timber/flooring"
+                  href="/products?category=hardwood"
                   className="block py-4 px-3 text-3xl font-semibold hover:text-amber-600 hover:bg-amber-50 rounded-xl transition-all"
                   onClick={() => handleSetOpen(false)}
                 >
@@ -192,7 +193,7 @@ export function MainNav({ isMenuOpen, setMenuOpen }: MainNavProps) {
               </li>
               <li>
                 <Link
-                  href="/timber/flooring?type=engineered"
+                  href="/products?category=engineered"
                   className="block py-4 px-3 text-3xl font-semibold hover:text-amber-600 hover:bg-amber-50 rounded-xl transition-all"
                   onClick={() => handleSetOpen(false)}
                 >
@@ -201,7 +202,7 @@ export function MainNav({ isMenuOpen, setMenuOpen }: MainNavProps) {
               </li>
               <li>
                 <Link
-                  href="/timber/flooring?type=laminate"
+                  href="/products?category=laminate"
                   className="block py-4 px-3 text-3xl font-semibold hover:text-amber-600 hover:bg-amber-50 rounded-xl transition-all"
                   onClick={() => handleSetOpen(false)}
                 >

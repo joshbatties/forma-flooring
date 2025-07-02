@@ -53,7 +53,7 @@ export default function ContactPage() {
             <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">Get in Touch</h1>
             <p className="text-gray-600 max-w-2xl mx-auto text-lg">
               Have questions about our timber products or need a quote for your next project?
-              We're here to help bring your vision to life.
+              We&apos;re here to help bring your vision to life.
             </p>
           </div>
           

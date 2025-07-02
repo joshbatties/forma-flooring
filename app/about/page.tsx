@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import TestimonialsCarousel from "../../components/TestimonialsCarousel";
-import { GlobeIcon, ShieldCheckIcon, UserIcon, HeartIcon, LightbulbIcon } from "lucide-react";
+import { GlobeIcon, ShieldCheckIcon, UserIcon } from "lucide-react";
 
 const aboutTestimonials = [
   {
@@ -88,7 +88,7 @@ export default function AboutPage() {
         <div className="relative z-10 text-center text-white px-4 max-w-4xl">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Our Story</h1>
           <p className="text-xl md:text-2xl">
-            Crafting Australia's finest timber products since 2001
+            Crafting Australia&apos;s finest timber products since 2001
           </p>
         </div>
       </section>
@@ -112,7 +112,7 @@ export default function AboutPage() {
                   support you every step of the way.
                 </p>
                 <p className="text-gray-600 leading-relaxed">
-                  What began as a small family business has grown into one of Australia's most respected timber flooring specialists, 
+                  What began as a small family business has grown into one of Australia&apos;s most respected timber flooring specialists, 
                   with a commitment to quality that remains unchanged despite our growth.
                 </p>
               </div>
@@ -158,7 +158,7 @@ export default function AboutPage() {
               </div>
               <h3 className="text-xl font-semibold mb-3">Customer Focus</h3>
               <p className="text-gray-600">
-                Our clients are at the heart of everything we do. We're committed to exceeding expectations on every project.
+                Our clients are at the heart of everything we do. We&apos;re committed to exceeding expectations on every project.
               </p>
             </div>
           </div>

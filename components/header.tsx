@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { MainNav } from "./main-nav";
 import { Search, ShoppingCart, X } from "lucide-react";
 import { Icons } from "./icons";
@@ -83,10 +84,13 @@ export default function Header() {
           {/* Logo - Left side */}
           <div className="w-[300px]">
             <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
-              <img 
+              <Image 
                 src="/forma-flooring-mountain-black.png" 
                 alt="Forma Flooring Logo" 
                 className="h-14 w-auto object-contain" 
+                width={200}
+                height={200}
+                priority
               />
             </Link>
           </div>
@@ -124,10 +128,12 @@ export default function Header() {
                         }}
                         className="flex items-start p-3 hover:bg-gray-50 border-b border-gray-100 last:border-b-0"
                       >
-                        <img
+                        <Image
                           src={product.image}
                           alt={product.name}
                           className="w-12 h-12 object-cover rounded mr-3 flex-shrink-0"
+                          width={48}
+                          height={48}
                         />
                         <div className="flex-1 min-w-0">
                           <h4 className="text-sm font-medium text-gray-900 truncate">{product.name}</h4>
@@ -145,7 +151,7 @@ export default function Header() {
                         }}
                         className="block p-3 text-center text-sm text-amber-600 hover:bg-amber-50 border-t border-gray-200"
                       >
-                        View all results for "{searchQuery}"
+                        View all results for &quot;{searchQuery}&quot;
                       </Link>
                     )}
                   </div>
@@ -155,7 +161,7 @@ export default function Header() {
                 {showResults && searchResults.length === 0 && searchQuery.length > 0 && (
                   <div className="absolute top-full left-0 right-0 mt-1 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
                     <div className="p-4 text-center text-sm text-gray-500">
-                      No results found for "{searchQuery}"
+                      No results found for &quot;{searchQuery}&quot;
                     </div>
                   </div>
                 )}
@@ -235,10 +241,12 @@ export default function Header() {
                         }}
                         className="flex items-start p-4 hover:bg-gray-50 border-b border-gray-100 last:border-b-0"
                       >
-                        <img
+                        <Image
                           src={product.image}
                           alt={product.name}
                           className="w-16 h-16 object-cover rounded mr-3 flex-shrink-0"
+                          width={64}
+                          height={64}
                         />
                         <div className="flex-1 min-w-0">
                           <h4 className="text-sm font-medium text-gray-900">{product.name}</h4>
@@ -257,7 +265,7 @@ export default function Header() {
                         }}
                         className="block p-4 text-center text-sm text-amber-600 hover:bg-amber-50 border-t border-gray-200"
                       >
-                        View all results for "{searchQuery}"
+                        View all results for &quot;{searchQuery}&quot;
                       </Link>
                     )}
                   </div>
@@ -266,7 +274,7 @@ export default function Header() {
                 {/* Mobile No results message */}
                 {searchResults.length === 0 && searchQuery.length > 0 && (
                   <div className="p-6 text-center">
-                    <p className="text-sm text-gray-500 mb-2">No results found for "{searchQuery}"</p>
+                    <p className="text-sm text-gray-500 mb-2">No results found for &quot;{searchQuery}&quot;</p>
                     <p className="text-xs text-gray-400">Try searching for hardwood, engineered, or laminate flooring</p>
                   </div>
                 )}

@@ -13,10 +13,12 @@ export default function Footer() {
           {/* Company Information */}
           <div>
             <div className="text-lg font-semibold text-gray-700 mb-5 flex items-start">
-              <img 
+              <Image 
                 src="/forma-flooring-mountain-black.png" 
                 alt="Forma Flooring Logo" 
                 className="h-7 w-auto object-contain" 
+                width={28}
+                height={28}
               />
             </div>
             <p className="text-gray-500 mb-4">

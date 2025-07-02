@@ -3,9 +3,12 @@ import Image from "next/image";
 import { ArrowLeft, Calendar, User, Clock, ArrowRight } from "lucide-react";
 import { blogPosts } from "@/data/blog-posts";
 
-export default function BlogPost({ params }: { params: { slug: string } }) {
+export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
+  // Await the params since they're now async in Next.js 15
+  const { slug } = await params;
+  
   // Find the blog post with the matching slug
-  const post = blogPosts.find((post) => post.slug === params.slug);
+  const post = blogPosts.find((post) => post.slug === slug);
   
   // If no matching post is found, you could render a 404 page or redirect
   if (!post) {
@@ -13,7 +16,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-3xl font-bold mb-4">Post Not Found</h1>
-          <p className="mb-6">The blog post you're looking for doesn't exist.</p>
+          <p className="mb-6">The blog post you&apos;re looking for doesn&apos;t exist.</p>
           <Link href="/blog" className="text-amber-600 hover:text-amber-800">
             Return to Blog
           </Link>

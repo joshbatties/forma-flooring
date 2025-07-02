@@ -3,8 +3,9 @@ import { blogPosts } from "@/data/blog-posts";
 
 // This is a dynamic route, so we need to generate metadata dynamically
 // In a real app, you would fetch this data from a CMS or API
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const post = blogPosts.find((post) => post.slug === params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const resolvedParams = await params;
+  const post = blogPosts.find((post) => post.slug === resolvedParams.slug);
   
   if (!post) {
     return {

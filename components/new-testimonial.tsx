@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import Image from 'next/image';
 
 interface Testimonial {
   id: number;
@@ -61,12 +62,12 @@ const NewTestimonials = ({
                                 </div>
 
                                 <blockquote className="flex-1 mt-8">
-                                        <p className="text-lg leading-relaxed text-gray-900 font-pj">"{testimonial.quote}"</p>
+                                        <p className="text-lg leading-relaxed text-gray-900 font-pj">&quot;{testimonial.quote}&quot;</p>
                                 </blockquote>
                             </div>
 
                             <div className="flex items-center mt-8">
-                                    <img className="flex-shrink-0 object-cover rounded-full w-11 h-11" src={testimonial.image} alt={testimonial.name} />
+                                    <Image className="flex-shrink-0 object-cover rounded-full w-11 h-11" src={testimonial.image} alt={testimonial.name} width={44} height={44} />
                                 <div className="ml-4">
                                         <p className="text-base font-bold text-gray-900 font-pj">{testimonial.name}</p>
                                         {testimonial.role && (

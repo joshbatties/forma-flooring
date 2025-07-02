@@ -3,17 +3,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeftIcon, CheckCircle2Icon } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { getProductBySlug, getRelatedProducts, Product } from "@/data/products";
+import { getProductBySlug, getRelatedProducts } from "@/data/products";
 
 interface ProductPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
-  // No need to await params.slug in server components in this syntax
-  const product = getProductBySlug(params.slug);
+  // Await the params since they're now async in Next.js 15
+  const { slug } = await params;
+  const product = getProductBySlug(slug);
   
   if (!product) {
     notFound();

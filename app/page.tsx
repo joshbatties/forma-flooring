@@ -28,10 +28,10 @@ function HeroSection() {
         </p>
         <div className="flex justify-center md:justify-start space-x-4">
           <Button asChild size="lg" className="mt-4">
-            <a href="/products">Explore Flooring</a>
+            <Link href="/products">Explore Flooring</Link>
           </Button>
           <Button asChild size="lg" variant="outline" className="mt-4">
-            <a href="/contact">Request Quote</a>
+            <Link href="/contact">Request Quote</Link>
           </Button>
         </div>
       </div>
@@ -416,9 +416,9 @@ function SupplyChainSection() {
           
           {/* Australia's Premier section - moved to top on mobile */}
           <div className="mb-8">
-            <h3 className="text-4xl font-semibold mb-4">Australia's Premier Timber Flooring Specialist</h3>
+            <h3 className="text-4xl font-semibold mb-4">Australia&apos;s Premier Timber Flooring Specialist</h3>
             <p className="text-gray-700">
-              We're proud to be a family owned and operated Australian business providing premium timber flooring solutions for residential and commercial projects across the country.
+              We&apos;re proud to be a family owned and operated Australian business providing premium timber flooring solutions for residential and commercial projects across the country.
             </p>
           </div>
 
@@ -473,9 +473,9 @@ function SupplyChainSection() {
           {/* Right Text + Image */}
           <div className="md:w-1/2 flex flex-col md:mt-32">
             <div className="mb-8 pl-4">
-              <h3 className="text-4xl font-semibold mb-4">Australia's Premier Timber Flooring Specialist</h3>
+              <h3 className="text-4xl font-semibold mb-4">Australia&apos;s Premier Timber Flooring Specialist</h3>
               <p className="text-gray-700">
-                We're proud to be a family owned and operated Australian business providing premium timber flooring solutions for residential and commercial projects across the country.
+                We&apos;re proud to be a family owned and operated Australian business providing premium timber flooring solutions for residential and commercial projects across the country.
               </p>
             </div>
             <div className="relative h-[400px] md:h-[500px] overflow-hidden rounded-lg">
