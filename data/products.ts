@@ -107,6 +107,99 @@ export const products: Product[] = [
     relatedProducts: ["h001", "h002", "e003"],
     slug: "american-walnut-flooring"
   },
+  {
+    id: "h004",
+    name: "Blackbutt Solid Timber Flooring",
+    description: "Australian native Blackbutt timber flooring with its distinctive pale cream to light brown coloring and straight grain. Known for exceptional hardness and natural resistance to bushfire, making it a popular choice for Australian homes.",
+    category: "hardwood",
+    subcategory: "australian species",
+    image: "/hardwood.jpg",
+    specifications: {
+      "Material": "Solid Blackbutt Timber",
+      "Thickness": "19mm",
+      "Width": "130mm",
+      "Length": "1800mm average",
+      "Surface Finish": "Satin or Matte options",
+      "Installation": "Secret Nail with Tongue and Groove"
+    },
+    features: [
+      "High Janka hardness rating for excellent durability",
+      "Natural bushfire resistance",
+      "Consistent grain pattern",
+      "Excellent for high-traffic areas",
+      "Australian native species"
+    ],
+    applications: [
+      "Family homes",
+      "Bushfire-prone areas",
+      "Commercial spaces",
+      "High-traffic residential areas"
+    ],
+    relatedProducts: ["h001", "h005", "e003"],
+    slug: "blackbutt-solid-timber-flooring"
+  },
+  {
+    id: "h005",
+    name: "Spotted Gum Solid Flooring",
+    description: "Premium Australian Spotted Gum flooring with its distinctive wavy grain pattern and rich color variations from pale brown to deep chocolate. One of Australia's most sought-after timber species for flooring.",
+    category: "hardwood",
+    subcategory: "australian species",
+    image: "/archway.jpg",
+    specifications: {
+      "Material": "Solid Spotted Gum",
+      "Thickness": "19mm",
+      "Width": "130mm",
+      "Length": "1800mm average",
+      "Surface Finish": "Matte or Gloss options",
+      "Installation": "Tongue and Groove"
+    },
+    features: [
+      "Distinctive wavy grain pattern",
+      "Rich color variations",
+      "Extremely hard-wearing",
+      "Natural resistance to termites",
+      "Sustainable Australian timber"
+    ],
+    applications: [
+      "Luxury residential flooring",
+      "High-end commercial spaces",
+      "Feature floors",
+      "Indoor and covered outdoor areas"
+    ],
+    relatedProducts: ["h001", "h004", "e003"],
+    slug: "spotted-gum-solid-flooring"
+  },
+  {
+    id: "h006",
+    name: "Jarrah Timber Flooring",
+    description: "Western Australian Jarrah timber flooring with its rich deep red to burgundy tones. This iconic Australian hardwood is prized for its striking appearance, exceptional durability, and resistance to rot and insects.",
+    category: "hardwood",
+    subcategory: "australian species",
+    image: "/hardwood.jpg",
+    specifications: {
+      "Material": "Solid Jarrah Timber",
+      "Thickness": "19mm",
+      "Width": "130mm",
+      "Length": "1800mm average",
+      "Surface Finish": "Satin or Semi-gloss",
+      "Installation": "Tongue and Groove"
+    },
+    features: [
+      "Rich deep red to burgundy coloration",
+      "Extremely hard-wearing and durable",
+      "Natural resistance to rot and insects",
+      "Develops rich patina over time",
+      "Iconic Australian hardwood"
+    ],
+    applications: [
+      "Heritage homes",
+      "Luxury residences",
+      "Feature floors",
+      "High-end commercial spaces"
+    ],
+    relatedProducts: ["h001", "h004", "h005"],
+    slug: "jarrah-timber-flooring"
+  },
 
   // Engineered Flooring Products
   {
@@ -202,6 +295,99 @@ export const products: Product[] = [
     relatedProducts: ["e001", "e002", "h001"],
     slug: "engineered-spotted-gum"
   },
+  {
+    id: "e004",
+    name: "Engineered Blackbutt Flooring",
+    description: "Australian Blackbutt engineered timber flooring offering the beauty of this iconic Australian species with the stability of engineered construction. Perfect for Australian conditions and modern homes.",
+    category: "engineered",
+    subcategory: "australian species",
+    image: "/engineered.jpg",
+    specifications: {
+      "Material": "Engineered Blackbutt",
+      "Thickness": "14mm",
+      "Width": "180mm",
+      "Length": "2200mm",
+      "Surface Finish": "UV Oil",
+      "Installation": "Click-lock system"
+    },
+    features: [
+      "Australian Blackbutt timber top layer",
+      "Stable multi-layer construction",
+      "Suitable for underfloor heating",
+      "Pre-finished for immediate use",
+      "Australian native species"
+    ],
+    applications: [
+      "Modern Australian homes",
+      "Apartments and units",
+      "Areas with climate variations",
+      "Concrete slab installations"
+    ],
+    relatedProducts: ["e003", "e001", "h004"],
+    slug: "engineered-blackbutt-flooring"
+  },
+  {
+    id: "e005",
+    name: "Herringbone Engineered Oak",
+    description: "Classic herringbone pattern engineered oak flooring for timeless elegance. This traditional parquet style adds sophistication and character to any space while offering the stability of engineered construction.",
+    category: "engineered",
+    subcategory: "parquet",
+    image: "/spiral.jpg",
+    specifications: {
+      "Material": "Engineered European Oak",
+      "Thickness": "15mm",
+      "Width": "120mm",
+      "Length": "600mm",
+      "Surface Finish": "Natural oil or UV lacquer",
+      "Installation": "Tongue and groove for herringbone pattern"
+    },
+    features: [
+      "Classic herringbone pattern",
+      "Timeless elegance and character",
+      "Stable engineered construction",
+      "Available in multiple color options",
+      "Suitable for underfloor heating"
+    ],
+    applications: [
+      "Heritage homes",
+      "Luxury apartments",
+      "Boutique commercial spaces",
+      "Feature floors in modern homes"
+    ],
+    relatedProducts: ["e002", "e006", "h002"],
+    slug: "herringbone-engineered-oak"
+  },
+  {
+    id: "e006",
+    name: "Chevron Engineered Oak Flooring",
+    description: "Sophisticated chevron pattern engineered oak flooring for distinctive interiors. The angled ends create a perfect V-pattern for a refined European aesthetic with the benefits of modern engineered construction.",
+    category: "engineered",
+    subcategory: "parquet",
+    image: "/engineered.jpg",
+    specifications: {
+      "Material": "Engineered European Oak",
+      "Thickness": "15mm",
+      "Width": "120mm",
+      "Length": "600mm",
+      "Surface Finish": "Brushed and oiled",
+      "Installation": "Angled ends for chevron pattern"
+    },
+    features: [
+      "Distinctive chevron V-pattern",
+      "European design heritage",
+      "Precision-cut angled ends",
+      "Stable engineered construction",
+      "Suitable for underfloor heating"
+    ],
+    applications: [
+      "Luxury homes",
+      "Boutique hotels",
+      "High-end retail spaces",
+      "Designer apartments"
+    ],
+    relatedProducts: ["e005", "e002", "h002"],
+    slug: "chevron-engineered-oak-flooring"
+  },
 
   // Laminate Flooring Products
   {
@@ -248,54 +434,147 @@ export const products: Product[] = [
       "Width": "192mm",
       "Length": "1285mm",
       "Surface Finish": "Textured wood grain",
-      "Installation": "Click-lock floating system"
+      "Installation": "Click-lock system with waterproof seal"
     },
     features: [
-      "100% waterproof core and surface",
-      "Sealed edges prevent moisture penetration",
+      "100% waterproof construction",
       "Suitable for wet areas",
+      "Realistic timber appearance",
       "Easy click-lock installation",
-      "Realistic wood grain texture"
+      "Low maintenance"
     ],
     applications: [
-      "Kitchens and bathrooms",
-      "Laundries and utility rooms",
-      "Basements and below-grade areas",
-      "Commercial washrooms"
+      "Bathrooms",
+      "Kitchens",
+      "Laundry rooms",
+      "Basements"
     ],
     relatedProducts: ["l001", "l003", "e001"],
     slug: "waterproof-laminate-flooring"
   },
   {
     id: "l003",
-    name: "AC5 Commercial Laminate",
-    description: "Heavy-duty AC5 commercial grade laminate flooring designed for high-traffic areas. Exceptional durability and wear resistance make this perfect for commercial applications while maintaining residential aesthetics.",
+    name: "Commercial Grade Laminate",
+    description: "Heavy-duty commercial grade laminate flooring designed for high-traffic areas. With an AC5 wear rating and enhanced scratch resistance, this flooring stands up to the demands of busy commercial environments.",
     category: "laminate",
-    subcategory: "commercial grade",
-    image: "/archway.jpg",
+    subcategory: "commercial",
+    image: "/laminate.jpg",
     specifications: {
-      "Material": "Extra Dense HDF Core",
-      "Thickness": "10mm",
-      "Width": "196mm",
-      "Length": "1285mm",
-      "Wear Rating": "AC5 Commercial",
+      "Material": "High-Density Fiberboard with Enhanced Wear Layer",
+      "Thickness": "12mm",
+      "Width": "195mm",
+      "Length": "1380mm",
+      "Surface Finish": "Commercial grade AC5 rating",
+      "Installation": "Heavy-duty click-lock system"
+    },
+    features: [
+      "AC5 commercial wear rating",
+      "Enhanced scratch and impact resistance",
+      "Suitable for very high traffic areas",
+      "Easy to maintain in commercial settings",
+      "Realistic timber appearance"
+    ],
+    applications: [
+      "Retail stores",
+      "Offices",
+      "Restaurants",
+      "Public spaces"
+    ],
+    relatedProducts: ["l001", "l002", "e001"],
+    slug: "commercial-grade-laminate"
+  },
+  {
+    id: "l004",
+    name: "Rustic Oak Laminate Flooring",
+    description: "Laminate flooring with authentic rustic oak appearance featuring knots, grain variations, and a hand-scraped texture. Offers the character of reclaimed timber with the durability and easy maintenance of laminate.",
+    category: "laminate",
+    subcategory: "wood look",
+    image: "/laminate.jpg",
+    specifications: {
+      "Material": "High-Density Fiberboard with Textured Surface",
+      "Thickness": "12mm",
+      "Width": "195mm",
+      "Length": "1380mm",
+      "Surface Finish": "Hand-scraped texture",
       "Installation": "Click-lock system"
     },
     features: [
-      "AC5 commercial durability rating",
-      "Exceptional wear and impact resistance",
-      "Suitable for heavy commercial traffic",
-      "Stain and moisture resistant surface",
-      "Long-term warranty coverage"
+      "Authentic rustic oak appearance",
+      "Hand-scraped texture for realistic feel",
+      "Knots and grain variations for character",
+      "Highly durable AC4 wear rating",
+      "Easy to install and maintain"
     ],
     applications: [
-      "Commercial offices and retail",
-      "Schools and educational facilities",
-      "Healthcare facilities",
-      "High-traffic residential areas"
+      "Country-style homes",
+      "Rustic interiors",
+      "Holiday homes",
+      "Farmhouse renovations"
     ],
-    relatedProducts: ["l001", "l002", "e002"],
-    slug: "ac5-commercial-laminate"
+    relatedProducts: ["l001", "l005", "e002"],
+    slug: "rustic-oak-laminate-flooring"
+  },
+  {
+    id: "l005",
+    name: "Stone Look Laminate Flooring",
+    description: "Innovative laminate flooring with the appearance of natural stone but the warmth and comfort of a timber floor. Perfect for creating statement areas with the practicality of laminate construction.",
+    category: "laminate",
+    subcategory: "stone look",
+    image: "/archway.jpg",
+    specifications: {
+      "Material": "High-Density Fiberboard with Stone Effect Layer",
+      "Thickness": "10mm",
+      "Width": "300mm",
+      "Length": "600mm",
+      "Surface Finish": "Textured stone effect",
+      "Installation": "Click-lock system"
+    },
+    features: [
+      "Realistic stone appearance",
+      "Warmer underfoot than real stone",
+      "Water-resistant properties",
+      "Easy installation",
+      "Durable and low maintenance"
+    ],
+    applications: [
+      "Kitchen areas",
+      "Entryways",
+      "Bathrooms",
+      "Open plan living spaces"
+    ],
+    relatedProducts: ["l002", "l004", "l001"],
+    slug: "stone-look-laminate-flooring"
+  },
+  {
+    id: "l006",
+    name: "High Gloss Laminate Flooring",
+    description: "Contemporary high gloss laminate flooring that creates a sleek, modern aesthetic. The reflective surface brightens spaces and creates a sense of luxury with the practicality of durable laminate construction.",
+    category: "laminate",
+    subcategory: "high gloss",
+    image: "/laminate.jpg",
+    specifications: {
+      "Material": "High-Density Fiberboard with Glossy Finish Layer",
+      "Thickness": "8mm",
+      "Width": "192mm",
+      "Length": "1285mm",
+      "Surface Finish": "High gloss",
+      "Installation": "Click-lock system"
+    },
+    features: [
+      "Contemporary high gloss finish",
+      "Light-reflecting properties",
+      "Creates a sense of space",
+      "Modern aesthetic",
+      "Durable and scratch-resistant"
+    ],
+    applications: [
+      "Modern apartments",
+      "Contemporary homes",
+      "Boutique retail spaces",
+      "Urban living environments"
+    ],
+    relatedProducts: ["l001", "l002", "l003"],
+    slug: "high-gloss-laminate-flooring"
   }
 ];
 
@@ -316,8 +595,7 @@ export function getProductsBySubcategory(subcategory: string): Product[] {
 }
 
 export function getRelatedProducts(product: Product): Product[] {
-  if (!product.relatedProducts) return [];
-  return product.relatedProducts
+  return (product.relatedProducts || [])
     .map(id => getProductById(id))
     .filter((p): p is Product => p !== undefined);
 } 

@@ -2,12 +2,14 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
+import { useState, useEffect, FormEvent } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import { products } from "@/data/products";
+import { Search } from "lucide-react";
 
 export default function ProductsPage() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const categoryParam = searchParams.get('category') as 'hardwood' | 'engineered' | 'laminate' | null;
   const searchQuery = searchParams.get('search') || '';
@@ -19,6 +21,7 @@ export default function ProductsPage() {
     searchParams.get('subcategory')
   );
   const [isFiltering, setIsFiltering] = useState(false);
+  const [localSearchQuery, setLocalSearchQuery] = useState(searchQuery);
   
   // Update from URL params when they change
   useEffect(() => {
@@ -30,7 +33,9 @@ export default function ProductsPage() {
     if (subcategoryParam) {
       setActiveSubcategory(subcategoryParam);
     }
-  }, [searchParams, categoryParam]);
+
+    setLocalSearchQuery(searchQuery);
+  }, [searchParams, categoryParam, searchQuery]);
   
   // Handle filter changes with animation
   const handleCategoryChange = (category: 'all' | 'hardwood' | 'engineered' | 'laminate') => {
@@ -47,6 +52,34 @@ export default function ProductsPage() {
     setActiveSubcategory(subcategory);
     // Reset animation state after a short delay
     setTimeout(() => setIsFiltering(false), 300);
+  };
+
+  // Handle search form submission
+  const handleSearch = (e: FormEvent) => {
+    e.preventDefault();
+    
+    // Build the new URL with search parameters
+    let url = '/products';
+    const params = new URLSearchParams();
+    
+    if (localSearchQuery) {
+      params.set('search', localSearchQuery);
+    }
+    
+    if (activeCategory !== 'all') {
+      params.set('category', activeCategory);
+    }
+    
+    if (activeSubcategory) {
+      params.set('subcategory', activeSubcategory);
+    }
+    
+    const queryString = params.toString();
+    if (queryString) {
+      url += `?${queryString}`;
+    }
+    
+    router.push(url);
   };
   
   // Get available subcategories for the selected category
@@ -144,6 +177,28 @@ export default function ProductsPage() {
               </Link>
             </div>
           )}
+        </div>
+
+        {/* Search Box */}
+        <div className="mb-8">
+          <form onSubmit={handleSearch} className="flex flex-col sm:flex-row gap-2">
+            <div className="relative flex-grow">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+              <input
+                type="text"
+                value={localSearchQuery}
+                onChange={(e) => setLocalSearchQuery(e.target.value)}
+                placeholder="Search for flooring products..."
+                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+              />
+            </div>
+            <button 
+              type="submit"
+              className="px-6 py-3 bg-amber-600 text-white font-medium rounded-lg hover:bg-amber-700 transition-colors sm:whitespace-nowrap"
+            >
+              Search
+            </button>
+          </form>
         </div>
         
         {/* Category Filters */}
@@ -251,9 +306,11 @@ export default function ProductsPage() {
                   )}
                 </div>
                 <h3 className="text-xl font-semibold mb-2">{product.name}</h3>
-                <p className="text-gray-600 mb-4 line-clamp-3">{product.description}</p>
+                <p className="text-gray-600 text-sm line-clamp-2 mb-3">
+                  {product.description}
+                </p>
                 <Link 
-                  href={`/product/${product.slug}`} 
+                  href={`/products/${product.slug}`} 
                   className="text-amber-600 hover:text-amber-800 text-sm font-medium"
                 >
                   View Details →

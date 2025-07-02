@@ -80,7 +80,7 @@ export default function TimberPage() {
                   <h3 className="font-semibold text-lg mb-2 line-clamp-1">{product.name}</h3>
                   <p className="text-gray-600 text-sm mb-3 line-clamp-2">{product.description}</p>
                   <Link 
-                    href={`/product/${product.slug}`} 
+                    href={`/products/${product.slug}`} 
                     className="text-amber-600 hover:text-amber-800 text-sm font-medium"
                   >
                     View Details →
@@ -282,7 +282,7 @@ export default function TimberPage() {
                   <h3 className="text-xl font-semibold mb-2">{product.name}</h3>
                   <p className="text-gray-600 mb-4 line-clamp-3">{product.description}</p>
                   <Link 
-                    href={`/product/${product.slug}`} 
+                    href={`/products/${product.slug}`} 
                     className="text-sm text-amber-600 font-medium hover:underline"
                   >
                     View Details →

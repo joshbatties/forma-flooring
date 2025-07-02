@@ -21,6 +21,16 @@ export default async function ProductPage({ params }: ProductPageProps) {
   
   const relatedProducts = getRelatedProducts(product);
   
+  // Helper function to get category display name
+  const getCategoryDisplayName = (category: string) => {
+    switch (category) {
+      case 'hardwood': return 'Hardwood Flooring';
+      case 'engineered': return 'Engineered Flooring';
+      case 'laminate': return 'Laminate Flooring';
+      default: return category.charAt(0).toUpperCase() + category.slice(1);
+    }
+  };
+  
   return (
     <div className="min-h-screen pb-16">
       {/* Breadcrumb Navigation */}
@@ -31,12 +41,14 @@ export default async function ProductPage({ params }: ProductPageProps) {
             <span className="mx-2">/</span>
             <Link href="/products" className="hover:text-amber-600">Products</Link>
             <span className="mx-2">/</span>
-            <Link href={`/${product.category}`} className="hover:text-amber-600 capitalize">{product.category}</Link>
+            <Link href={`/products?category=${product.category}`} className="hover:text-amber-600 capitalize">
+              {getCategoryDisplayName(product.category)}
+            </Link>
             {product.subcategory && (
               <>
                 <span className="mx-2">/</span>
                 <Link 
-                  href={`/${product.category}/${product.subcategory}`} 
+                  href={`/products?category=${product.category}&subcategory=${product.subcategory}`} 
                   className="hover:text-amber-600 capitalize"
                 >
                   {product.subcategory}
@@ -53,11 +65,11 @@ export default async function ProductPage({ params }: ProductPageProps) {
       <div className="bg-white">
         <div className="max-w-[2200px] mx-auto px-4 py-8">
           <Link 
-            href={`/${product.category}`}
+            href={`/products?category=${product.category}`}
             className="inline-flex items-center text-amber-600 hover:text-amber-800 mb-4"
           >
             <ArrowLeftIcon className="h-4 w-4 mr-2" />
-            Back to {product.category.charAt(0).toUpperCase() + product.category.slice(1)}
+            Back to {getCategoryDisplayName(product.category)}
           </Link>
           <h1 className="text-3xl md:text-4xl font-bold">{product.name}</h1>
         </div>
@@ -178,7 +190,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                       {relatedProduct.description}
                     </p>
                     <Link 
-                      href={`/product/${relatedProduct.slug}`}
+                      href={`/products/${relatedProduct.slug}`}
                       className="text-amber-600 hover:text-amber-800 text-sm font-medium"
                     >
                       View Details →

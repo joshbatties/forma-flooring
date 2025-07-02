@@ -76,7 +76,11 @@ export default function Footer() {
                   Gallery
                 </Link>
               </li>
-
+              <li>
+                <Link href="/blog" className="text-gray-500 hover:text-gray-700 transition-colors">
+                  Blog
+                </Link>
+              </li>
               <li>
                 <Link href="/contact" className="text-gray-500 hover:text-gray-700 transition-colors">
                   Contact
@@ -160,6 +164,9 @@ export default function Footer() {
             </Link>
             <Link href="/terms-of-service" className="text-gray-500 hover:text-gray-700 text-sm transition-colors">
               Terms of Service
+            </Link>
+            <Link href="/blog" className="text-gray-500 hover:text-gray-700 text-sm transition-colors">
+              Blog
             </Link>
           </div>
         </div>

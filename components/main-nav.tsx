@@ -36,7 +36,7 @@ export function MainNav({ isMenuOpen, setMenuOpen }: MainNavProps) {
   return (
     <>
       {/* Desktop navigation menu in the center */}
-      <nav className="hidden md:flex items-center justify-center">
+      <nav className="hidden xl:flex items-center justify-center">
         <ul className="flex items-center space-x-8">
           <li>
             <Link
@@ -127,12 +127,12 @@ export function MainNav({ isMenuOpen, setMenuOpen }: MainNavProps) {
 
       {/* Mobile Menu - Slide out panel - Will be triggered from the Header component */}
       <div 
-        className={`md:hidden fixed inset-0 bg-black/30 backdrop-blur-md z-40 transition-opacity duration-300 ${open ? "opacity-100" : "opacity-0 pointer-events-none"}`} 
+        className={`xl:hidden fixed inset-0 bg-black/30 backdrop-blur-md z-40 transition-opacity duration-300 ${open ? "opacity-100" : "opacity-0 pointer-events-none"}`} 
         onClick={() => handleSetOpen(false)} 
       />
       
       <div 
-        className={`md:hidden fixed top-0 right-0 bottom-0 w-80 max-w-[80vw] bg-white border-l border-gray-200 shadow-2xl z-50 transform transition-transform duration-300 ease-in-out flex flex-col ${open ? "translate-x-0" : "translate-x-full"}`}
+        className={`xl:hidden fixed top-0 right-0 bottom-0 w-80 max-w-[80vw] bg-white border-l border-gray-200 shadow-2xl z-50 transform transition-transform duration-300 ease-in-out flex flex-col ${open ? "translate-x-0" : "translate-x-full"}`}
         style={{ backgroundColor: 'white' }}
       >
         <div className="p-6 flex justify-between items-center border-b flex-shrink-0">

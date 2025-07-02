@@ -66,7 +66,7 @@ function ProductCategories() {
             {/* Hardwood */}
             <div className="space-y-2">
               <Link 
-                href="/timber/flooring" 
+                href="/products?category=hardwood" 
                 className="block text-lg text-gray-900 underline hover:text-gray-600 transition-colors duration-300"
               >
                 Hardwood
@@ -79,7 +79,7 @@ function ProductCategories() {
             {/* Engineered */}
             <div className="space-y-2">
               <Link 
-                href="/timber/flooring?type=engineered" 
+                href="/products?category=engineered" 
                 className="block text-lg text-gray-900 underline hover:text-gray-600 transition-colors duration-300"
               >
                 Engineered
@@ -92,7 +92,7 @@ function ProductCategories() {
             {/* Laminate */}
             <div className="space-y-2">
               <Link 
-                href="/timber/flooring?type=laminate" 
+                href="/products?category=laminate" 
                 className="block text-lg text-gray-900 underline hover:text-gray-600 transition-colors duration-300"
               >
                 Laminate
@@ -111,7 +111,7 @@ function ProductCategories() {
                 <span className="text-sm text-gray-400">01</span>
                 <h3 className="text-lg font-medium text-gray-900">Hardwood</h3>
               </div>
-              <Link href="/timber/flooring" className="block group">
+              <Link href="/products?category=hardwood" className="block group">
                 <div className="relative h-[400px] overflow-hidden rounded-lg transition-shadow">
                   <Image 
                     src="/hardwood.jpg" 
@@ -141,7 +141,7 @@ function ProductCategories() {
                 <span className="text-sm text-gray-400">02</span>
                 <h3 className="text-lg font-medium text-gray-900">Engineered</h3>
               </div>
-              <Link href="/timber/flooring?type=engineered" className="block group">
+              <Link href="/products?category=engineered" className="block group">
                 <div className="relative h-[400px] overflow-hidden rounded-lg transition-shadow">
                   <Image 
                     src="/engineered.jpg" 
@@ -171,7 +171,7 @@ function ProductCategories() {
                 <span className="text-sm text-gray-400">03</span>
                 <h3 className="text-lg font-medium text-gray-900">Laminate</h3>
               </div>
-              <Link href="/timber/flooring?type=laminate" className="block group">
+              <Link href="/products?category=laminate" className="block group">
                 <div className="relative h-[400px] overflow-hidden rounded-lg transition-shadow">
           <Image 
                     src="/laminate.jpg" 
@@ -207,7 +207,7 @@ function ProductCategories() {
           {/* Hardwood */}
           <div className="space-y-2">
             <Link 
-              href="/timber/flooring" 
+              href="/products?category=hardwood" 
               className="block text-lg text-gray-900 underline hover:text-gray-600 transition-colors duration-300"
             >
               Hardwood
@@ -220,7 +220,7 @@ function ProductCategories() {
           {/* Engineered */}
           <div className="space-y-2">
             <Link 
-              href="/timber/flooring?type=engineered" 
+              href="/products?category=engineered" 
               className="block text-lg text-gray-900 underline hover:text-gray-600 transition-colors duration-300"
             >
               Engineered
@@ -233,7 +233,7 @@ function ProductCategories() {
           {/* Laminate */}
           <div className="space-y-2">
             <Link 
-              href="/timber/flooring?type=laminate" 
+              href="/products?category=laminate" 
               className="block text-lg text-gray-900 underline hover:text-gray-600 transition-colors duration-300"
             >
               Laminate
@@ -252,7 +252,7 @@ function ProductCategories() {
               <span className="text-sm text-gray-400">01</span>
               <h3 className="text-lg font-medium text-gray-900">Hardwood</h3>
             </div>
-            <Link href="/timber/flooring" className="block group">
+            <Link href="/products?category=hardwood" className="block group">
               <div className="relative h-[250px] overflow-hidden rounded-lg transition-shadow">
                 <Image 
                   src="/hardwood.jpg" 
@@ -282,7 +282,7 @@ function ProductCategories() {
               <span className="text-sm text-gray-400">02</span>
               <h3 className="text-lg font-medium text-gray-900">Engineered</h3>
             </div>
-            <Link href="/timber/flooring?type=engineered" className="block group">
+            <Link href="/products?category=engineered" className="block group">
               <div className="relative h-[250px] overflow-hidden rounded-lg transition-shadow">
                 <Image 
                   src="/engineered.jpg" 
@@ -312,7 +312,7 @@ function ProductCategories() {
               <span className="text-sm text-gray-400">03</span>
               <h3 className="text-lg font-medium text-gray-900">Laminate</h3>
             </div>
-            <Link href="/timber/flooring?type=laminate" className="block group">
+            <Link href="/products?category=laminate" className="block group">
               <div className="relative h-[250px] overflow-hidden rounded-lg transition-shadow">
                 <Image 
                   src="/laminate.jpg" 
@@ -499,7 +499,7 @@ function OurValues() {
       <div className="max-w-[2200px] mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <h2 className="text-4xl md:text-5xl font-light mt-6">Our Commitment</h2>
+            <h2 className="text-4xl md:text-3xl xl:text-5xl font-light mt-6">Our Commitment</h2>
           </div>
           
           <div className="space-y-4">
@@ -531,59 +531,87 @@ function OurValues() {
   );
 }
 
-  function FeaturedProducts() {
-    return (
+function FeaturedProducts() {
+  return (
       <section className="mt-32 px-4">
         <div className="max-w-5xl mx-auto">
         <h2 className="text-3xl font-bold text-center">Trending</h2>
       <p className="text-gray-600 text-center mt-2">
-        Our most popular products right now
+        Our most popular timber flooring products
       </p>
       <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {/* Product 1 */}
         <div className="p-4 border rounded-lg transition-transform hover:scale-[1.02] hover:shadow-sm">
-          <div className="w-full h-48 bg-gray-200 rounded-md" />
-          <h3 className="text-lg font-semibold mt-4">Premium Oak Flooring</h3>
+          <div className="relative w-full h-48 bg-gray-200 rounded-md overflow-hidden">
+            <Image 
+              src="/hardwood.jpg"
+              alt="Australian Hardwood Flooring"
+              fill
+              className="object-cover"
+            />
+          </div>
+          <h3 className="text-lg font-semibold mt-4">Australian Hardwood</h3>
           <p className="text-gray-500 mt-1 mb-2">
-            European white oak with a timeless look
+            Premium native timber with exceptional durability
           </p>
-          <Link href="/timber/flooring" className="text-blue-600 hover:underline text-sm">
+          <Link href="/products?category=hardwood" className="text-amber-600 hover:underline text-sm">
             View Details →
           </Link>
         </div>
         
         {/* Product 2 */}
         <div className="p-4 border rounded-lg transition-transform hover:scale-[1.02] hover:shadow-sm">
-          <div className="w-full h-48 bg-gray-200 rounded-md" />
-          <h3 className="text-lg font-semibold mt-4">Structural Steel Beams</h3>
+          <div className="relative w-full h-48 bg-gray-200 rounded-md overflow-hidden">
+            <Image 
+              src="/engineered.jpg"
+              alt="Herringbone Engineered Oak"
+              fill
+              className="object-cover"
+            />
+          </div>
+          <h3 className="text-lg font-semibold mt-4">Herringbone Oak</h3>
           <p className="text-gray-500 mt-1 mb-2">
-            High-grade steel for maximum stability
+            Classic pattern with modern engineered stability
           </p>
-          <Link href="/steel/structural" className="text-blue-600 hover:underline text-sm">
+          <Link href="/products/herringbone-engineered-oak" className="text-amber-600 hover:underline text-sm">
             View Details →
           </Link>
         </div>
         
         {/* Product 3 */}
         <div className="p-4 border rounded-lg transition-transform hover:scale-[1.02] hover:shadow-sm">
-          <div className="w-full h-48 bg-gray-200 rounded-md" />
-          <h3 className="text-lg font-semibold mt-4">Engineered Timber Beams</h3>
+          <div className="relative w-full h-48 bg-gray-200 rounded-md overflow-hidden">
+            <Image 
+              src="/spiral.jpg"
+              alt="Spotted Gum Solid Flooring"
+              fill
+              className="object-cover"
+            />
+          </div>
+          <h3 className="text-lg font-semibold mt-4">Spotted Gum</h3>
           <p className="text-gray-500 mt-1 mb-2">
-            Reliable strength for structural applications
+            Australian native with distinctive grain patterns
           </p>
-          <Link href="/timber/structural" className="text-blue-600 hover:underline text-sm">
+          <Link href="/products/spotted-gum-solid-flooring" className="text-amber-600 hover:underline text-sm">
             View Details →
           </Link>
         </div>
         
         {/* Product 4 */}
         <div className="p-4 border rounded-lg transition-transform hover:scale-[1.02] hover:shadow-sm">
-          <div className="w-full h-48 bg-gray-200 rounded-md" />
-          <h3 className="text-lg font-semibold mt-4">Premium Concrete Mix</h3>
+          <div className="relative w-full h-48 bg-gray-200 rounded-md overflow-hidden">
+            <Image 
+              src="/laminate.jpg"
+              alt="Waterproof Laminate Flooring"
+              fill
+              className="object-cover"
+            />
+          </div>
+          <h3 className="text-lg font-semibold mt-4">Waterproof Laminate</h3>
           <p className="text-gray-500 mt-1 mb-2">
-            Professional-grade concrete for all projects
+            Perfect for kitchens, bathrooms and wet areas
           </p>
-          <Link href="/supplies/concrete" className="text-blue-600 hover:underline text-sm">
+          <Link href="/products/waterproof-laminate-flooring" className="text-amber-600 hover:underline text-sm">
             View Details →
           </Link>
         </div>
@@ -602,42 +630,42 @@ const homeTestimonials = [
   {
     id: 1,
     quote: "Their selection of timber flooring is outstanding. The staff provided expert advice that helped me choose the perfect option for my home renovation.",
-          name: "Sarah W.",
+    name: "Sarah W.",
       role: "Homeowner",
       image: "/testimonial-person1.jpg"
   },
   {
     id: 2,
-    quote: "As a contractor, I rely on quality materials delivered on time. This company consistently exceeds my expectations with their products and service.",
-          name: "James R.",
+    quote: "As a contractor, I rely on quality materials delivered on time. FORMA FLOORING consistently exceeds my expectations with their premium timber products and service.",
+    name: "James R.",
       role: "Building Contractor",
       image: "/testimonial-person2.webp"
   },
   {
     id: 3,
-    quote: "The structural steel we purchased was exactly what our commercial project needed. Great quality at competitive prices.",
-          name: "Emily G.",
+    quote: "The engineered timber flooring we purchased was exactly what our commercial project needed. Beautiful appearance with excellent durability.",
+    name: "Emily G.",
       role: "Project Manager",
       image: "/testimonial-person3.png"
   },
   {
     id: 4,
-    quote: "We've been working with FORMA FLOORING for years on all our construction projects. Their consistent quality and reliable service keeps us coming back.",
-          name: "Robert T.",
+    quote: "We've been working with FORMA FLOORING for years on all our residential projects. Their consistent quality and reliable service keeps us coming back.",
+    name: "Robert T.",
       role: "Construction Manager",
       image: "/testimonial-person1.jpg"
   },
   {
     id: 5,
     quote: "The timber flooring arrived exactly when promised, and the quality was superb. Definitely my go-to supplier for future flooring projects.",
-          name: "Michelle K.",
+    name: "Michelle K.",
       role: "Interior Designer",
       image: "/testimonial-person2.webp"
   },
   {
     id: 6,
-    quote: "Excellent customer service! They helped me find exactly what I needed for my DIY home project, even though I was clueless when I walked in.",
-          name: "Thomas H.",
+    quote: "Excellent customer service! They helped me find exactly the right laminate flooring for my DIY home project, even though I was clueless when I walked in.",
+    name: "Thomas H.",
       role: "DIY Enthusiast",
       image: "/testimonial-person3.png"
   }
@@ -667,8 +695,8 @@ export default function HomePage() {
           <NewTestimonials
             title="What our clients say"
             subtitle="Dont just take our word for it"
-            testimonials={homeTestimonials}
-          />
+          testimonials={homeTestimonials}
+        />
         </div>
       </div>
     </>

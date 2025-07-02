@@ -58,7 +58,7 @@ export default function AllTimberProductsPage() {
                 <h3 className="text-xl font-semibold mb-2">{product.name}</h3>
                 <p className="text-gray-600 mb-4 line-clamp-3">{product.description}</p>
                 <Link 
-                  href={`/product/${product.slug}`} 
+                  href={`/products/${product.slug}`} 
                   className="text-amber-600 hover:text-amber-800 text-sm font-medium"
                 >
                   View Details →

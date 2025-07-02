@@ -5,13 +5,13 @@ import { MainNav } from "./main-nav";
 import { Search, ShoppingCart, X } from "lucide-react";
 import { Icons } from "./icons";
 import { useState, useEffect, useRef } from "react";
-import { products } from "@/data/products";
+import { products, Product } from "@/data/products";
 
 export default function Header() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState<typeof products>([]);
+  const [searchResults, setSearchResults] = useState<Product[]>([]);
   const [showResults, setShowResults] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
   const mobileSearchRef = useRef<HTMLDivElement>(null);
@@ -25,14 +25,16 @@ export default function Header() {
   const handleSearch = (query: string) => {
     setSearchQuery(query);
     
-    if (query.trim().length > 0) {
-      const filtered = products.filter(product =>
+    if (query.length >= 2) {
+      // Filter products based on search query
+      const filtered = products.filter(product => 
         product.name.toLowerCase().includes(query.toLowerCase()) ||
         product.description.toLowerCase().includes(query.toLowerCase()) ||
         product.category.toLowerCase().includes(query.toLowerCase()) ||
         (product.subcategory && product.subcategory.toLowerCase().includes(query.toLowerCase()))
       );
-      setSearchResults(filtered.slice(0, 6)); // Limit to 6 results
+      
+      setSearchResults(filtered.slice(0, 5)); // Limit to 5 results
       setShowResults(true);
     } else {
       setSearchResults([]);
@@ -48,8 +50,6 @@ export default function Header() {
       }
       if (mobileSearchRef.current && !mobileSearchRef.current.contains(event.target as Node)) {
         setSearchOpen(false);
-        setShowResults(false);
-        setSearchQuery("");
       }
     };
 
@@ -62,11 +62,8 @@ export default function Header() {
   // Handle mobile search toggle
   const handleMobileSearchToggle = () => {
     setSearchOpen(!searchOpen);
-    if (!searchOpen) {
-      setSearchQuery("");
-      setSearchResults([]);
-      setShowResults(false);
-    }
+    setSearchQuery("");
+    setSearchResults([]);
   };
 
   // Get category display name
@@ -75,12 +72,12 @@ export default function Header() {
       case 'hardwood': return 'Hardwood Flooring';
       case 'engineered': return 'Engineered Flooring';
       case 'laminate': return 'Laminate Flooring';
-      default: return category;
+      default: return category.charAt(0).toUpperCase() + category.slice(1);
     }
   };
 
   return (
-    <header className="w-full bg-white md:bg-white/80 md:backdrop-blur-xl shadow-lg md:shadow-xl border-b border-gray-200 md:border-white/30 sticky top-0 z-50">
+    <header className="w-full bg-white xl:bg-white/80 xl:backdrop-blur-xl shadow-lg xl:shadow-xl border-b border-gray-200 xl:border-white/30 sticky top-0 z-50">
       <div className="max-w-[2200px] mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           {/* Logo - Left side */}
@@ -102,7 +99,7 @@ export default function Header() {
           {/* Action buttons - Right side */}
           <div className="w-[300px] flex justify-end items-center">
             {/* Desktop Search - Wider and with live results */}
-            <div className="hidden md:flex relative mr-4" ref={searchRef}>
+            <div className="hidden xl:flex relative mr-4" ref={searchRef}>
               <div className="relative w-64">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
               <input 
@@ -118,9 +115,9 @@ export default function Header() {
                 {showResults && searchResults.length > 0 && (
                   <div className="absolute top-full left-0 right-0 mt-1 bg-white rounded-lg shadow-lg border border-gray-200 z-50 max-h-80 overflow-y-auto">
                     {searchResults.map((product) => (
-                      <Link
+                      <Link 
                         key={product.id}
-                        href={`/product/${product.slug}`}
+                        href={`/products/${product.slug}`}
                         onClick={() => {
                           setShowResults(false);
                           setSearchQuery("");
@@ -168,7 +165,7 @@ export default function Header() {
             {/* Mobile Search Button - Only on mobile */}
             <button 
               onClick={handleMobileSearchToggle}
-              className="md:hidden p-2 text-gray-700 hover:text-amber-600 transition-colors duration-200 hover:bg-amber-50/50 rounded-full cursor-pointer"
+              className="xl:hidden p-2 text-gray-700 hover:text-amber-600 transition-colors duration-200 hover:bg-amber-50/50 rounded-full cursor-pointer"
               aria-label="Search products"
             >
               <Search className="h-5 w-5" />
@@ -186,7 +183,7 @@ export default function Header() {
             {/* Mobile Menu Toggle - Only on mobile */}
             <button
               onClick={toggleMobileMenu}
-              className="md:hidden p-2 text-gray-700 hover:text-amber-600 transition-colors duration-200 hover:bg-amber-50/50 rounded-full cursor-pointer"
+              className="xl:hidden p-2 text-gray-700 hover:text-amber-600 transition-colors duration-200 hover:bg-amber-50/50 rounded-full cursor-pointer"
               aria-label="Toggle Menu"
             >
               <MenuIcon className="h-5 w-5" />
@@ -197,7 +194,7 @@ export default function Header() {
       
       {/* Mobile Search Overlay - Centered and full-width */}
       {searchOpen && (
-        <div className="md:hidden fixed inset-0 bg-black/20 backdrop-blur-sm z-50">
+        <div className="xl:hidden fixed inset-0 bg-black/20 backdrop-blur-sm z-50">
           <div className="flex justify-center pt-20">
             <div className="w-full max-w-md mx-4" ref={mobileSearchRef}>
               <div className="bg-white rounded-lg shadow-xl">
@@ -228,9 +225,9 @@ export default function Header() {
                 {searchResults.length > 0 && (
                   <div className="max-h-80 overflow-y-auto">
                     {searchResults.map((product) => (
-                      <Link
+                      <Link 
                         key={product.id}
-                        href={`/product/${product.slug}`}
+                        href={`/products/${product.slug}`}
                         onClick={() => {
                           setSearchOpen(false);
                           setShowResults(false);
