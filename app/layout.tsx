@@ -17,7 +17,9 @@ export const metadata = {
   icons: {
     icon: [
       { url: '/favicons/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/favicons/favicon-32x32.png', sizes: '32x32', type: 'image/png' }
+      { url: '/favicons/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicons/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/favicons/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' }
     ],
     apple: {
       url: '/favicons/apple-touch-icon.png',
@@ -38,7 +40,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="en">
       <head>
         <meta name="theme-color" content="#ffffff" />
-        <link rel="mask-icon" href="/favicons/favicon.ico" color="#000000" />
+        <link rel="mask-icon" href="/favicons/apple-touch-icon.png" color="#000000" />
         <meta name="msapplication-TileColor" content="#ffffff" />
       </head>
       <body className={`min-h-screen flex flex-col ${gabarito.variable} font-sans`}>

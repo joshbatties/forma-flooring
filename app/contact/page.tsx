@@ -142,7 +142,7 @@ export default function ContactPage() {
         <div className="max-w-7xl mx-auto px-4">
           <NewTestimonials
             title="What our clients say"
-            subtitle="Dont just take our word for it"
+            subtitle="Don't just take our word for it"
             testimonials={homeTestimonials} showCta={false}
           />
         </div>
