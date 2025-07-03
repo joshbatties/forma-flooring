@@ -6,17 +6,6 @@ import { blogPosts } from "@/data/blog-posts";
 export default function BlogPage() {
     return (
     <div className="min-h-screen py-8">
-      {/* Breadcrumb Navigation */}
-      <div className="bg-gray-50 py-4 mb-8">
-        <div className="max-w-[2200px] mx-auto px-4">
-          <div className="flex items-center text-sm text-gray-600">
-            <Link href="/" className="hover:text-amber-600">Home</Link>
-            <span className="mx-2">/</span>
-            <span className="text-gray-900 font-medium">Blog</span>
-          </div>
-        </div>
-      </div>
-      
       <div className="max-w-[2200px] mx-auto px-4">
         {/* Page Header */}
         <div className="mb-12 text-center max-w-3xl mx-auto">

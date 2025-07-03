@@ -1,9 +1,19 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { ContactForm } from "../../components/contact-form";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import NewTestimonials from "../../components/new-testimonial";
 import { homeTestimonials } from "@/lib/testimonials";
+
+const MapView = dynamic(() => import("../../components/map-view"), {
+  ssr: false,
+  loading: () => (
+    <div className="bg-gray-200 rounded-xl h-64 w-full overflow-hidden shadow-sm flex items-center justify-center">
+      <p className="text-gray-500">Loading map...</p>
+    </div>
+  ),
+});
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const contactTestimonials = [
@@ -72,7 +82,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="font-semibold text-lg">Our Location</h3>
-                      <p className="text-gray-600">123 Flooring Way, Melbourne VIC 3000</p>
+                      <p className="text-gray-600">1 Collins Street, Melbourne VIC 3000</p>
                     </div>
                   </div>
                   
@@ -109,12 +119,9 @@ export default function ContactPage() {
                 </div>
               </div>
               
-              {/* Map or Image Placeholder */}
-              <div className="bg-gray-200 rounded-xl h-64 w-full overflow-hidden shadow-sm">
-                {/* Replace this with an actual map component or image */}
-                <div className="h-full w-full flex items-center justify-center">
-                  <p className="text-gray-500">Map View</p>
-                </div>
+              {/* Map */}
+              <div className="w-full overflow-hidden shadow-sm">
+                <MapView />
               </div>
             </div>
             

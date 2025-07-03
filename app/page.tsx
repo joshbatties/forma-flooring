@@ -344,48 +344,45 @@ function ProductCategories() {
 
 function SupplyChainSection() {
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [lastScrollY, setLastScrollY] = useState(0);
-  const [scrollDirection, setScrollDirection] = useState('down');
   const sectionRef = useRef<HTMLElement>(null);
+  const progressRef = useRef(0);
+  const lastUpdateRef = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      
-      // Determine scroll direction
-      if (currentScrollY > lastScrollY) {
-        setScrollDirection('down');
-      } else {
-        setScrollDirection('up');
-      }
-      setLastScrollY(currentScrollY);
+      const now = Date.now();
+      // Throttle updates to max 60fps (about 16ms between frames)
+      if (now - lastUpdateRef.current < 16) return;
+      lastUpdateRef.current = now;
 
-      // Calculate progress based on section visibility
       if (sectionRef.current) {
-        const rect = sectionRef.current.getBoundingClientRect();
+        const titleElement = sectionRef.current.querySelector('h2');
+        if (!titleElement) return;
+        
+        const titleRect = titleElement.getBoundingClientRect();
         const windowHeight = window.innerHeight;
         
-        // Start animation when section comes into view
-        if (rect.top < windowHeight && rect.bottom > 0) {
-          // Calculate how much of the section is visible (0 to 1)
-          const visibleRatio = Math.min(1, Math.max(0, (windowHeight - rect.top) / (windowHeight * 0.5)));
-          
-          if (scrollDirection === 'down') {
-            setScrollProgress(visibleRatio);
-          } else {
-            // When scrolling up, reverse the animation
-            setScrollProgress(Math.max(0, visibleRatio - 0.2));
-          }
-        } else if (rect.top >= windowHeight) {
-          // Section not yet visible
-          setScrollProgress(0);
+        // Start when the title enters the viewport, end when it reaches 20% from the top
+        const startPoint = windowHeight;
+        const endPoint = windowHeight * 0.2;
+        const currentPoint = titleRect.top;
+        
+        // Calculate progress (1 when at top, 0 when at bottom)
+        const newProgress = Math.min(1, Math.max(0, 
+          (startPoint - currentPoint) / (startPoint - endPoint)
+        ));
+
+        // Only update if the change is significant enough
+        if (Math.abs(newProgress - progressRef.current) > 0.001) {
+          progressRef.current = newProgress;
+          setScrollProgress(newProgress);
         }
       }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY, scrollDirection]);
+  }, []);
 
   return (
     <section ref={sectionRef} className="mt-40 px-4">
@@ -394,8 +391,13 @@ function SupplyChainSection() {
           <div className="relative inline-block">
             <h2 className="text-8xl font-bold">Why Forma?</h2>
             {/* Animated underline */}
-            <div className="absolute bottom-0 left-0 h-2 bg-black transition-all duration-300 ease-out"
-                 style={{ width: `${scrollProgress * 100}%` }}>
+            <div 
+              className="absolute bottom-0 left-0 h-2 bg-black will-change-[width]"
+              style={{ 
+                width: `${scrollProgress * 100}%`,
+                transform: `translateZ(0)` // Force GPU acceleration
+              }}
+            >
             </div>
           </div>
           <p className="text-gray-600 mt-6 max-w-xl mx-auto">
@@ -534,97 +536,97 @@ function OurValues() {
 
 function FeaturedProducts() {
   return (
-      <section className="mt-32 px-4">
-        <div className="max-w-5xl mx-auto">
-        <h2 className="text-3xl font-bold text-center">Trending</h2>
-      <p className="text-gray-600 text-center mt-2">
-        See what&apos;s hot right now
-      </p>
-      <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {/* Product 1 */}
-        <div className="p-4 border rounded-lg transition-transform hover:scale-[1.02] hover:shadow-sm">
-          <div className="relative w-full h-48 bg-gray-200 rounded-md overflow-hidden">
-            <Image 
-              src="/hardwood.jpg"
-              alt="Australian Hardwood Flooring"
-              fill
-              className="object-cover"
-            />
-          </div>
-          <h3 className="text-lg font-semibold mt-4">Australian Hardwood</h3>
-          <p className="text-gray-500 mt-1 mb-2">
-            Premium native timber with exceptional durability
-          </p>
-          <Link href="/products?category=hardwood" className="text-amber-600 hover:underline text-sm">
-            View Details →
-          </Link>
+    <section className="mt-32 px-4">
+      <div className="max-w-5xl mx-auto">
+      <h2 className="text-3xl font-bold text-center">Trending</h2>
+    <p className="text-gray-600 text-center mt-2">
+      See what&apos;s hot right now
+    </p>
+    <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {/* Product 1 */}
+      <div className="p-4 border rounded-lg transition-transform hover:scale-[1.02] hover:shadow-sm">
+        <div className="relative w-full h-48 bg-gray-200 rounded-md overflow-hidden">
+          <Image 
+            src="/hardwood.jpg"
+            alt="Australian Hardwood Flooring"
+            fill
+            className="object-cover"
+          />
         </div>
-        
-        {/* Product 2 */}
-        <div className="p-4 border rounded-lg transition-transform hover:scale-[1.02] hover:shadow-sm">
-          <div className="relative w-full h-48 bg-gray-200 rounded-md overflow-hidden">
-            <Image 
-              src="/engineered.jpg"
-              alt="Herringbone Engineered Oak"
-              fill
-              className="object-cover"
-            />
-          </div>
-          <h3 className="text-lg font-semibold mt-4">Herringbone Oak</h3>
-          <p className="text-gray-500 mt-1 mb-2">
-            Classic pattern with modern engineered stability
-          </p>
-          <Link href="/products/herringbone-engineered-oak" className="text-amber-600 hover:underline text-sm">
-            View Details →
-          </Link>
-        </div>
-        
-        {/* Product 3 */}
-        <div className="p-4 border rounded-lg transition-transform hover:scale-[1.02] hover:shadow-sm">
-          <div className="relative w-full h-48 bg-gray-200 rounded-md overflow-hidden">
-            <Image 
-              src="/spiral.jpg"
-              alt="Spotted Gum Solid Flooring"
-              fill
-              className="object-cover"
-            />
-          </div>
-          <h3 className="text-lg font-semibold mt-4">Spotted Gum</h3>
-          <p className="text-gray-500 mt-1 mb-2">
-            Australian native with distinctive grain patterns
-          </p>
-          <Link href="/products/spotted-gum-solid-flooring" className="text-amber-600 hover:underline text-sm">
-            View Details →
-          </Link>
-        </div>
-        
-        {/* Product 4 */}
-        <div className="p-4 border rounded-lg transition-transform hover:scale-[1.02] hover:shadow-sm">
-          <div className="relative w-full h-48 bg-gray-200 rounded-md overflow-hidden">
-            <Image 
-              src="/laminate.jpg"
-              alt="Waterproof Laminate Flooring"
-              fill
-              className="object-cover"
-            />
-          </div>
-          <h3 className="text-lg font-semibold mt-4">Waterproof Laminate</h3>
-          <p className="text-gray-500 mt-1 mb-2">
-            Perfect for kitchens, bathrooms and wet areas
-          </p>
-          <Link href="/products/waterproof-laminate-flooring" className="text-amber-600 hover:underline text-sm">
-            View Details →
-          </Link>
-        </div>
+        <h3 className="text-lg font-semibold mt-4">Australian Hardwood</h3>
+        <p className="text-gray-500 mt-1 mb-2">
+          Premium native timber with exceptional durability
+        </p>
+        <Link href="/products?category=hardwood" className="text-amber-600 hover:underline text-sm">
+          View Details →
+        </Link>
       </div>
-      <div className="mt-8 text-center">
-        <Button asChild size="lg">
-          <Link href="/products">View All</Link>
-        </Button>
+      
+      {/* Product 2 */}
+      <div className="p-4 border rounded-lg transition-transform hover:scale-[1.02] hover:shadow-sm">
+        <div className="relative w-full h-48 bg-gray-200 rounded-md overflow-hidden">
+          <Image 
+            src="/engineered.jpg"
+            alt="Herringbone Engineered Oak"
+            fill
+            className="object-cover"
+          />
+        </div>
+        <h3 className="text-lg font-semibold mt-4">Herringbone Oak</h3>
+        <p className="text-gray-500 mt-1 mb-2">
+          Classic pattern with modern engineered stability
+        </p>
+        <Link href="/products/herringbone-engineered-oak" className="text-amber-600 hover:underline text-sm">
+          View Details →
+        </Link>
       </div>
+      
+      {/* Product 3 */}
+      <div className="p-4 border rounded-lg transition-transform hover:scale-[1.02] hover:shadow-sm">
+        <div className="relative w-full h-48 bg-gray-200 rounded-md overflow-hidden">
+          <Image 
+            src="/spiral.jpg"
+            alt="Spotted Gum Solid Flooring"
+            fill
+            className="object-cover"
+          />
+        </div>
+        <h3 className="text-lg font-semibold mt-4">Spotted Gum</h3>
+        <p className="text-gray-500 mt-1 mb-2">
+          Australian native with distinctive grain patterns
+        </p>
+        <Link href="/products/spotted-gum-solid-flooring" className="text-amber-600 hover:underline text-sm">
+          View Details →
+        </Link>
       </div>
-    </section>
-  );
+      
+      {/* Product 4 */}
+      <div className="p-4 border rounded-lg transition-transform hover:scale-[1.02] hover:shadow-sm">
+        <div className="relative w-full h-48 bg-gray-200 rounded-md overflow-hidden">
+          <Image 
+            src="/laminate.jpg"
+            alt="Waterproof Laminate Flooring"
+            fill
+            className="object-cover"
+          />
+        </div>
+        <h3 className="text-lg font-semibold mt-4">Waterproof Laminate</h3>
+        <p className="text-gray-500 mt-1 mb-2">
+          Perfect for kitchens, bathrooms and wet areas
+        </p>
+        <Link href="/products/waterproof-laminate-flooring" className="text-amber-600 hover:underline text-sm">
+          View Details →
+        </Link>
+      </div>
+    </div>
+    <div className="mt-8 text-center">
+      <Button asChild size="lg">
+        <Link href="/products">View All</Link>
+      </Button>
+    </div>
+    </div>
+  </section>
+);
 }
 
 /* export const homeTestimonials = [

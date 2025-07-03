@@ -34,34 +34,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
   
   return (
     <div className="min-h-screen pb-16">
-      {/* Breadcrumb Navigation */}
-      <div className="bg-gray-50 py-4">
-        <div className="max-w-[2200px] mx-auto px-4">
-          <div className="flex items-center text-sm text-gray-600">
-            <Link href="/" className="hover:text-amber-600">Home</Link>
-            <span className="mx-2">/</span>
-            <Link href="/products" className="hover:text-amber-600">Products</Link>
-            <span className="mx-2">/</span>
-            <Link href={`/products?category=${product.category}`} className="hover:text-amber-600 capitalize">
-              {getCategoryDisplayName(product.category)}
-            </Link>
-            {product.subcategory && (
-              <>
-                <span className="mx-2">/</span>
-                <Link 
-                  href={`/products?category=${product.category}&subcategory=${product.subcategory}`} 
-                  className="hover:text-amber-600 capitalize"
-                >
-                  {product.subcategory}
-                </Link>
-              </>
-            )}
-            <span className="mx-2">/</span>
-            <span className="text-gray-900 font-medium">{product.name}</span>
-          </div>
-        </div>
-      </div>
-      
       {/* Product Header */}
       <div className="bg-white">
         <div className="max-w-[2200px] mx-auto px-4 py-8">
