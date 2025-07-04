@@ -362,20 +362,39 @@ function SupplyChainSection() {
         const titleRect = titleElement.getBoundingClientRect();
         const windowHeight = window.innerHeight;
         
-        // Start when the title enters the viewport, end when it reaches 20% from the top
-        const startPoint = windowHeight;
-        const endPoint = windowHeight * 0.2;
-        const currentPoint = titleRect.top;
+        // Different calculation for mobile vs desktop
+        const isMobile = window.innerWidth < 768;
         
-        // Calculate progress (1 when at top, 0 when at bottom)
-        const newProgress = Math.min(1, Math.max(0, 
-          (startPoint - currentPoint) / (startPoint - endPoint)
-        ));
+        if (isMobile) {
+          // Mobile: Start when title is 80% down the screen, end when it's 30% from top
+          const startPoint = windowHeight * 0.8;
+          const endPoint = windowHeight * 0.3;
+          const currentPoint = titleRect.top;
+          
+          const newProgress = Math.min(1, Math.max(0, 
+            (startPoint - currentPoint) / (startPoint - endPoint)
+          ));
 
-        // Only update if the change is significant enough
-        if (Math.abs(newProgress - progressRef.current) > 0.001) {
-          progressRef.current = newProgress;
-          setScrollProgress(newProgress);
+          // Only update if the change is significant enough
+          if (Math.abs(newProgress - progressRef.current) > 0.01) {
+            progressRef.current = newProgress;
+            setScrollProgress(newProgress);
+          }
+        } else {
+          // Desktop: Original logic
+          const startPoint = windowHeight;
+          const endPoint = windowHeight * 0.2;
+          const currentPoint = titleRect.top;
+          
+          const newProgress = Math.min(1, Math.max(0, 
+            (startPoint - currentPoint) / (startPoint - endPoint)
+          ));
+
+          // Only update if the change is significant enough
+          if (Math.abs(newProgress - progressRef.current) > 0.001) {
+            progressRef.current = newProgress;
+            setScrollProgress(newProgress);
+          }
         }
       }
     };
