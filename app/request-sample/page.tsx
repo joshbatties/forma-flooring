@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Button } from "../../components/ui/button";
+import { NewsletterService, SampleRequestService } from "../../lib/supabase";
 
 export default function RequestSamplePage() {
   const [formData, setFormData] = useState({
@@ -71,12 +72,49 @@ export default function RequestSamplePage() {
     return Object.keys(errors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (validateForm()) {
-      console.log("Form submitted:", formData);
-      setFormSubmitted(true);
-      // Here you would normally send the data to a server
+      try {
+        // Submit sample request to Supabase
+        const sampleRequestResult = await SampleRequestService.submitRequest({
+          first_name: formData.firstName,
+          last_name: formData.lastName,
+          email: formData.email,
+          phone: formData.phone,
+          state: formData.state,
+          project_address: formData.projectAddress,
+          postal_address: formData.sameAddress ? undefined : formData.postalAddress,
+          same_address: formData.sameAddress,
+          home_owner_or_trade: formData.homeOwnerOrTrade as 'Home Owner' | 'Builder or Trade',
+          working_with_designer: formData.workingWithDesigner as 'Yes' | 'No',
+          selected_samples: formData.selectedSamples,
+          hear_about: formData.hearAbout,
+          newsletter_subscription: formData.newsletter,
+          privacy_agreement: formData.privacyAgree,
+          submission_status: 'pending'
+        });
+
+        if (!sampleRequestResult.success) {
+          alert(`Sample request failed: ${sampleRequestResult.error}`);
+          return;
+        }
+
+        // Handle newsletter subscription if checked
+        if (formData.newsletter) {
+          await NewsletterService.subscribe({
+            email: formData.email,
+            first_name: formData.firstName,
+            last_name: formData.lastName,
+            subscription_source: 'sample_request'
+          });
+        }
+
+        setFormSubmitted(true);
+      } catch (error) {
+        console.error("Form submission error:", error);
+        alert("An error occurred while submitting your request. Please try again.");
+      }
     }
   };
 

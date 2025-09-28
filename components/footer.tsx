@@ -1,11 +1,41 @@
+"use client";
+
 import Link from "next/link";
-import { Mail, Phone, MapPin, Facebook, Instagram, Linkedin } from "lucide-react";
+import { Mail, Phone, MapPin, Facebook, Instagram, Linkedin, CheckCircle2, Loader2 } from "lucide-react";
 import { XIcon } from "./icons";
 import Image from "next/image";
+import { useState } from "react";
+import { NewsletterService } from "../lib/supabase";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
-  
+  const [newsletterEmail, setNewsletterEmail] = useState("");
+  const [newsletterSubmitting, setNewsletterSubmitting] = useState(false);
+  const [newsletterSuccess, setNewsletterSuccess] = useState(false);
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!newsletterEmail) return;
+
+    setNewsletterSubmitting(true);
+
+    const result = await NewsletterService.subscribe({
+      email: newsletterEmail,
+      subscription_source: 'footer_signup'
+    });
+
+    setNewsletterSubmitting(false);
+
+    if (result.success) {
+      setNewsletterSuccess(true);
+      setNewsletterEmail("");
+      setTimeout(() => setNewsletterSuccess(false), 3000);
+    } else {
+      alert(result.error || "Failed to subscribe. Please try again.");
+    }
+  };
+
   return (
     <footer className="w-full bg-white mt-10">
       {/* Main Footer */}
@@ -121,20 +151,36 @@ export default function Footer() {
             <p className="text-gray-500 mb-6">
               Subscribe to our newsletter for product updates, industry insights, and exclusive offers.
             </p>
-            <form className="space-y-4">
+            <form onSubmit={handleNewsletterSubmit} className="space-y-4">
               <div>
-                <input 
-                  type="email" 
-                  placeholder="Your email address" 
+                <input
+                  type="email"
+                  placeholder="Your email address"
+                  value={newsletterEmail}
+                  onChange={(e) => setNewsletterEmail(e.target.value)}
                   className="w-full px-4 py-2 rounded-md bg-gray-100 border border-gray-300 text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500"
                   required
+                  disabled={newsletterSubmitting}
                 />
               </div>
-              <button 
-                type="submit" 
-                className="w-full bg-gray-900 hover:bg-black text-white font-medium py-2 px-4 rounded-md transition-colors"
+              <button
+                type="submit"
+                disabled={newsletterSubmitting || newsletterSuccess}
+                className="w-full bg-gray-900 hover:bg-black disabled:bg-gray-600 text-white font-medium py-2 px-4 rounded-md transition-colors"
               >
-                Subscribe
+                {newsletterSubmitting ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin inline" />
+                    Subscribing...
+                  </>
+                ) : newsletterSuccess ? (
+                  <>
+                    <CheckCircle2 className="mr-2 h-4 w-4 inline" />
+                    Subscribed!
+                  </>
+                ) : (
+                  "Subscribe"
+                )}
               </button>
             </form>
           </div>

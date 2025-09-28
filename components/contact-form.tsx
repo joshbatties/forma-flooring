@@ -5,6 +5,7 @@ import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Textarea } from "../components/ui/textarea";
 import { CheckCircle2, Loader2 } from "lucide-react";
+import { NewsletterService } from "../lib/supabase";
 
 export function ContactForm() {
   const [submitting, setSubmitting] = useState(false);
@@ -14,20 +15,36 @@ export function ContactForm() {
     email: "",
     phone: "",
     inquiry: "general",
-    message: ""
+    message: "",
+    newsletter: false
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    const { name, value, type } = e.target;
+    const checked = type === 'checkbox' ? (e.target as HTMLInputElement).checked : value;
+    setFormData(prev => ({ ...prev, [name]: checked }));
   };
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setSubmitting(true);
-    
-    // In production, you'd send form data to an API or server route
+
     try {
+      // Handle newsletter subscription if checked
+      if (formData.newsletter) {
+        const nameParts = formData.name.split(' ');
+        const firstName = nameParts[0];
+        const lastName = nameParts.slice(1).join(' ');
+
+        await NewsletterService.subscribe({
+          email: formData.email,
+          first_name: firstName,
+          last_name: lastName || undefined,
+          subscription_source: 'contact_form'
+        });
+      }
+
+      // In production, you'd send form data to an API or server route
       // Simulating API call
       await new Promise(resolve => setTimeout(resolve, 1500));
       setSuccess(true);
@@ -39,7 +56,8 @@ export function ContactForm() {
           email: "",
           phone: "",
           inquiry: "general",
-          message: ""
+          message: "",
+          newsletter: false
         });
       }, 3000);
     } catch (error) {
@@ -119,11 +137,25 @@ export function ContactForm() {
           className="w-full min-h-[120px] transition-all duration-200 focus:ring-amber-500 focus:border-amber-500"
         />
       </label>
-      
+
+      <div className="flex items-center space-x-2">
+        <input
+          type="checkbox"
+          id="newsletter"
+          name="newsletter"
+          checked={formData.newsletter}
+          onChange={handleChange}
+          className="rounded border-gray-300 text-amber-600 shadow-sm focus:border-amber-300 focus:ring focus:ring-amber-200 focus:ring-opacity-50"
+        />
+        <label htmlFor="newsletter" className="text-sm text-gray-700">
+          Subscribe to our newsletter for updates and exclusive offers
+        </label>
+      </div>
+
       <div className="mt-6">
-        <Button 
-          type="submit" 
-          disabled={submitting || success} 
+        <Button
+          type="submit"
+          disabled={submitting || success}
           className={`w-full sm:w-auto relative ${success ? "bg-green-600 hover:bg-green-700" : "bg-black hover:bg-gray-800"} transition-colors duration-200`}
         >
           {submitting ? (
